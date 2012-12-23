@@ -301,16 +301,17 @@ Entry.prototype.getParams = function(index) {
   'use strict';
 
   if (!this.params) {
-    var result = this.entry.match(new RegExp('\\* *@param\\s+\\{([^}]+)\\}\\s+(\\[.+\\]|[$\\w|]+(?:\\[.+\\])?)\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'gi'));
+    // var result = this.entry.match(new RegExp('\\* *@param\\s+\\{([^}]+)\\}\\s+(\\[.+\\]|[$\\w|]+(?:\\[.+\\])?)\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'gi'));
+    var result = new RegExp('\\* *@param\\s+\\{([^}]+)\\}\\s+(\\[.+\\]|[$\\w|]+(?:\\[.+\\])?)\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'gi').exec(this.entry);
     if(result){
       result = result.filter(function(value){
         return !!value;
       });
     }
+    var params = [[]];
     if (result && result.length) {
-      var params = {};
-      result.forEach(function(param){
-        params[param] = param.replace(new RegExp('(?:^|\\n)\\s*\\* *', 'g'), ' ').trim();
+      result.slice(1).forEach(function(param){
+        params[0].push(param.replace(new RegExp('(?:^|\\n)\\s*\\* *', 'g'), ' ').trim());
         // param.forEach(function(value, key){
         //   if(!Array.isArray(result[0][key])){
         //     result[0][key] = [];
@@ -318,9 +319,8 @@ Entry.prototype.getParams = function(index) {
         //   result[0][key].push(value.replace(new RegExp('(?:^|\\n)\\s*\\* *', 'g'), ' ').trim());
         // });
       });
-      result = params;
     }
-    this.params = result;
+    this.params = params;
   }
   return typeof index !== 'undefined' && index !== null ? this.params[index] : this.params;
 };

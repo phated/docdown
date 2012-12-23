@@ -174,7 +174,7 @@ Generator.prototype.interpolate = function(string, object) {
     } else if(_.has(object, token)){
       replacement = object[token];
     }
-    string = string.replace(pattern, replacement.trim());
+    string = string.replace(pattern, String(replacement).trim());
   });
   return Generator.prototype.format(string);
 };
