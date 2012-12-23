@@ -1,0 +1,17 @@
+{
+  "name": "docdownjs",
+  "version": "0.0.1",
+  "volo": {
+    "dependencies": {
+      "javascript-natural-sort": "github:overset/javascript-natural-sort/master"
+    }
+  },
+  "scripts": {
+    "install": "volo add"
+  },
+  "dependencies": {
+    "underscore.string": "~2.3.1",
+    "lodash": "~1.0.0-rc.3",
+    "volo": "~0.2.6"
+  }
+}
