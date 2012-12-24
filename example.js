@@ -5,7 +5,7 @@ var fs = require('fs');
 // generate Markdown
 var markdown = docdown({
   path: './src/DocDown/Alias.js',
-  url: 'https://github.com/phated/docdown/blob/master/Alias.js'
+  url: 'https://github.com/phated/docdown/blob/js/Alias.js'
 });
 
 fs.writeFileSync('output.md', markdown, 'utf-8');

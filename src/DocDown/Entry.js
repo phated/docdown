@@ -162,7 +162,7 @@ Entry.prototype.getCall = function() {
     var params = this.getParams();
     if(params){
       _.forEach(params, function(param){
-        result.push(param[1]);
+        result.push(param[2]);
       });
     }
     // format
@@ -325,17 +325,18 @@ Entry.prototype.getParams = function(index) {
       });
     }
     // console.log(result);
-    // if (result && result.length) {
-    //   result.forEach(function(param){
+    if (result && result.length) {
+      result.forEach(function(param){
     //     // console.log(param);
-    //     param.forEach(function(value, key){
+        param.forEach(function(value, key){
     //       if(!Array.isArray(result[0][key])){
     //         result[0][key] = [];
     //       }
     //       result[0][key].push(value.replace(new RegExp('(?:^|\\n)\\s*\\* *', 'g'), ' ').trim());
-    //     });
-    //   });
-    // }
+          value = value.replace(new RegExp('(?:^|\\n)\\s*\\* *', 'g'), ' ').trim();
+        });
+      });
+    }
     // console.log(result);
     this.params = result;
   }
