@@ -5,6 +5,22 @@ var _ = require('lodash');
 var _str = require('underscore.string');
 var natsort = require('../../javascript-natural-sort/naturalSort');
 
+// Return all pattern matches with captured groups
+RegExp.prototype.execAll = function(string) {
+  'use strict';
+
+  var match;
+  var matches = [];
+  while (match = this.exec(string)) {
+    var matchArray = [];
+    _.forEach(match, function(group, idx){
+      matchArray.push(group);
+    });
+    matches.push(matchArray);
+  }
+  return matches.length ? matches : null;
+};
+
 /**
  * A class to simplify parsing a single JSDoc entry.
  */
@@ -302,25 +318,26 @@ Entry.prototype.getParams = function(index) {
 
   if (!this.params) {
     // var result = this.entry.match(new RegExp('\\* *@param\\s+\\{([^}]+)\\}\\s+(\\[.+\\]|[$\\w|]+(?:\\[.+\\])?)\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'gi'));
-    var result = new RegExp('\\* *@param\\s+\\{([^}]+)\\}\\s+(\\[.+\\]|[$\\w|]+(?:\\[.+\\])?)\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'gi').exec(this.entry);
+    var result = new RegExp('\\* *@param\\s+\\{([^}]+)\\}\\s+(\\[.+\\]|[$\\w|]+(?:\\[.+\\])?)\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'gi').execAll(this.entry);
     if(result){
       result = result.filter(function(value){
         return !!value;
       });
     }
-    var params = [[]];
-    if (result && result.length) {
-      result.slice(1).forEach(function(param){
-        params[0].push(param.replace(new RegExp('(?:^|\\n)\\s*\\* *', 'g'), ' ').trim());
-        // param.forEach(function(value, key){
-        //   if(!Array.isArray(result[0][key])){
-        //     result[0][key] = [];
-        //   }
-        //   result[0][key].push(value.replace(new RegExp('(?:^|\\n)\\s*\\* *', 'g'), ' ').trim());
-        // });
-      });
-    }
-    this.params = params;
+    // console.log(result);
+    // if (result && result.length) {
+    //   result.forEach(function(param){
+    //     // console.log(param);
+    //     param.forEach(function(value, key){
+    //       if(!Array.isArray(result[0][key])){
+    //         result[0][key] = [];
+    //       }
+    //       result[0][key].push(value.replace(new RegExp('(?:^|\\n)\\s*\\* *', 'g'), ' ').trim());
+    //     });
+    //   });
+    // }
+    // console.log(result);
+    this.params = result;
   }
   return typeof index !== 'undefined' && index !== null ? this.params[index] : this.params;
 };

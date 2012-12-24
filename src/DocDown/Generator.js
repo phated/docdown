@@ -212,10 +212,10 @@ Generator.prototype.addEntries = function(result, entries) {
       result.push('', '#### Arguments');
       params.forEach(function(param, index){
         result.push(Generator.prototype.interpolate('#{num}. `#{name}` (#{type}): #{desc}', {
-          'desc': param[2],
-          'name': param[1],
+          'desc': param[3],
+          'name': param[2],
           'num': index + 1,
-          'type': param[0]
+          'type': param[1]
         }));
       });
     }

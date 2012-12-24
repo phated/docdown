@@ -6,16 +6,16 @@
 <!-- div -->
 
 ## <a id="Alias"></a>`Alias`
-* [`Alias`](#aliasname)
-* [`Alias.getAliases`](#aliasgetaliasesindex)
+* [`Alias`](#aliasstring-object)
+* [`Alias.getAliases`](#aliasgetaliasesnumber)
 * [`Alias.getCall`](#aliasgetcall)
 * [`Alias.getCategory`](#aliasgetcategory)
 * [`Alias.getDesc`](#aliasgetdesc)
 * [`Alias.getExample`](#aliasgetexample)
 * [`Alias.getLineNumber`](#aliasgetlinenumber)
-* [`Alias.getMembers`](#aliasgetmembersindex)
+* [`Alias.getMembers`](#aliasgetmembersnumber)
 * [`Alias.getName`](#aliasgetname)
-* [`Alias.getParams`](#aliasgetparamsindex)
+* [`Alias.getParams`](#aliasgetparamsnumber)
 * [`Alias.getReturns`](#aliasgetreturns)
 * [`Alias.getType`](#aliasgettype)
 * [`Alias.isAlias`](#aliasisalias)
@@ -39,13 +39,14 @@
 
 <!-- div -->
 
-### <a id="aliasname"></a>`Alias(name)`
-<a href="#aliasname">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
+### <a id="aliasstring-object"></a>`Alias(String, Object)`
+<a href="#aliasstring-object">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
 
 The Alias constructor.
 
 #### Arguments
 1. `name` *(String)*: The alias name.
+2. `owner` *(Object)*: The alias owner.
 
 * * *
 
@@ -54,8 +55,8 @@ The Alias constructor.
 
 <!-- div -->
 
-### <a id="aliasgetaliasesindex"></a>`Alias.getAliases(index)`
-<a href="#aliasgetaliasesindex">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
+### <a id="aliasgetaliasesnumber"></a>`Alias.getAliases(Number)`
+<a href="#aliasgetaliasesnumber">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
 
 Extracts the entry's `alias` objects.
 
@@ -77,9 +78,6 @@ Extracts the entry's `alias` objects.
 
 Extracts the function call from the owner entry.
 
-#### Arguments
-1. `undefined` *(undefined)*: undefined
-
 #### Returns
 *(String)*: The function call.
 
@@ -94,9 +92,6 @@ Extracts the function call from the owner entry.
 <a href="#aliasgetcategory">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `category` data.
-
-#### Arguments
-1. `undefined` *(undefined)*: undefined
 
 #### Returns
 *(String)*: The owner entry's `category` data.
@@ -113,9 +108,6 @@ Extracts the owner entry's `category` data.
 
 Extracts the owner entry's description.
 
-#### Arguments
-1. `undefined` *(undefined)*: undefined
-
 #### Returns
 *(String)*: The owner entry's description.
 
@@ -130,9 +122,6 @@ Extracts the owner entry's description.
 <a href="#aliasgetexample">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `example` data.
-
-#### Arguments
-1. `undefined` *(undefined)*: undefined
 
 #### Returns
 *(String)*: The owner entry's `example` data.
@@ -149,9 +138,6 @@ Extracts the owner entry's `example` data.
 
 Resolves the owner entry's line number.
 
-#### Arguments
-1. `undefined` *(undefined)*: undefined
-
 #### Returns
 *(Number)*: The owner entry's line number.
 
@@ -162,8 +148,8 @@ Resolves the owner entry's line number.
 
 <!-- div -->
 
-### <a id="aliasgetmembersindex"></a>`Alias.getMembers(index)`
-<a href="#aliasgetmembersindex">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
+### <a id="aliasgetmembersnumber"></a>`Alias.getMembers(Number)`
+<a href="#aliasgetmembersnumber">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `member` data.
 
@@ -185,9 +171,6 @@ Extracts the owner entry's `member` data.
 
 Extracts the owner entry's `name` data.
 
-#### Arguments
-1. `undefined` *(undefined)*: undefined
-
 #### Returns
 *(String)*: The owner entry's `name` data.
 
@@ -198,8 +181,8 @@ Extracts the owner entry's `name` data.
 
 <!-- div -->
 
-### <a id="aliasgetparamsindex"></a>`Alias.getParams(index)`
-<a href="#aliasgetparamsindex">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
+### <a id="aliasgetparamsnumber"></a>`Alias.getParams(Number)`
+<a href="#aliasgetparamsnumber">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `param` data.
 
@@ -221,9 +204,6 @@ Extracts the owner entry's `param` data.
 
 Extracts the owner entry's `returns` data.
 
-#### Arguments
-1. `undefined` *(undefined)*: undefined
-
 #### Returns
 *(String)*: The owner entry's `returns` data.
 
@@ -238,9 +218,6 @@ Extracts the owner entry's `returns` data.
 <a href="#aliasgettype">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `type` data.
-
-#### Arguments
-1. `undefined` *(undefined)*: undefined
 
 #### Returns
 *(String)*: The owner entry's `type` data.
@@ -257,9 +234,6 @@ Extracts the owner entry's `type` data.
 
 Checks if the entry is an alias.
 
-#### Arguments
-1. `undefined` *(undefined)*: undefined
-
 #### Returns
 *(Boolean)*: Returns `true`.
 
@@ -274,9 +248,6 @@ Checks if the entry is an alias.
 <a href="#aliasisctor">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
 
 Checks if the owner entry is a constructor.
-
-#### Arguments
-1. `undefined` *(undefined)*: undefined
 
 #### Returns
 *(Boolean)*: Returns `true` if a constructor, else `false`.
@@ -293,9 +264,6 @@ Checks if the owner entry is a constructor.
 
 Checks if the owner entry *is* assigned to a prototype.
 
-#### Arguments
-1. `undefined` *(undefined)*: undefined
-
 #### Returns
 *(Boolean)*: Returns `true` if assigned to a prototype, else `false`.
 
@@ -311,9 +279,6 @@ Checks if the owner entry *is* assigned to a prototype.
 
 Checks if the owner entry is private.
 
-#### Arguments
-1. `undefined` *(undefined)*: undefined
-
 #### Returns
 *(Boolean)*: Returns `true` if private, else `false`.
 
@@ -328,9 +293,6 @@ Checks if the owner entry is private.
 <a href="#aliasisstatic">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/master/Alias.js#L2 "View in source") [&#x24C9;][1]
 
 Checks if the owner entry is *not* assigned to a prototype.
-
-#### Arguments
-1. `undefined` *(undefined)*: undefined
 
 #### Returns
 *(Boolean)*: Returns `true` if not assigned to a prototype, else `false`.
