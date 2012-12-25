@@ -93,7 +93,6 @@ Entry.prototype.isFunction = function() {
   if (_.isUndefined(this._isFunction)) {
     this._isFunction = !!(this.isCtor() || (this.getParams() && this.getParams().length) || (this.getReturns() && this.getReturns().length) || this.entry.match('\\* *@function\\b'));
   }
-  // console.log('isFunction', this._isFunction);
   return this._isFunction;
 };
 
@@ -161,17 +160,14 @@ Entry.prototype.getCall = function() {
   }
   // compile function call syntax
   if (this.isFunction()) {
-    // console.log('result', result);
     // compose parts
     result = [result];
     var params = this.getParams();
     if(params){
       _.forEach(params, function(param){
-        // console.log(param);
         result.push(param[2]);
       });
     }
-    // console.log(result);
     // format
     result = name + '(' + result.slice(1).join(', ') + ')';
     result = result.replace(new RegExp('\\], \\[', 'g'), ', ').replace(new RegExp(', \\[', 'g'), ' [, ');
@@ -291,7 +287,6 @@ Entry.prototype.isLicense = function() {
   if (_.isUndefined(this._isLicense)) {
     this._isLicense = !!this.entry.match(new RegExp('\\* *@license\\b', 'g'));
   }
-  // console.log('isLicense', this._isLicense);
   return this._isLicense;
 };
 
@@ -320,9 +315,8 @@ Entry.prototype.isPrivate = function() {
   'use strict';
 
   if (_.isUndefined(this._isPrivate)) {
-    this._isPrivate = this.isLicense() || !!this.entry.match(new RegExp('\\* *@private\\b/', 'g')) || !this.entry.match(new RegExp('\\* *@[a-z]+\\b', 'g'));
+    this._isPrivate = this.isLicense() || !!this.entry.match(new RegExp('\\* *@private\\b', 'g')) || !this.entry.match(new RegExp('\\* *@[a-z]+\\b', 'g'));
   }
-  // console.log('isPrivate', this._isPrivate);
   return this._isPrivate;
 };
 
@@ -347,7 +341,6 @@ Entry.prototype.isStatic = function() {
     var parent = this.getMembers(0).split(new RegExp('[#.]')).pop();
     if (parent) {
       _.forEach(Entry.prototype.getEntries(this.source), function(entry){
-        // console.log(entry);
         entry = entry.pop();
         entry = new Entry(entry, this.source);
         if(entry.getName() == parent){

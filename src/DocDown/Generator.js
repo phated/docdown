@@ -550,8 +550,7 @@ Generator.prototype.generate = function() {
       result.push(openTag, '## `' + category + '`');
       this.addEntries(result, entries);
     }, this);
-  }
-  else {
+  } else {
     _.forEach(api, function(entry){
       // skip aliases
       if(entry.isAlias()){
