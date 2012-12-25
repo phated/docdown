@@ -13,7 +13,7 @@
 
 <!-- div -->
 
-## `Alias`
+## `Alias.prototype`
 * [`Alias.prototype.getAliases`](#aliasprototypegetaliasesindex)
 * [`Alias.prototype.getCall`](#aliasprototypegetcall)
 * [`Alias.prototype.getCategory`](#aliasprototypegetcategory)

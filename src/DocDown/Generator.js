@@ -505,7 +505,7 @@ Generator.prototype.generate = function() {
       // add static and plugin sub-entries
       ['static', 'plugin'].forEach(function(kind){
         if(kind == 'plugin' && entry.plugin.length){
-          result.push(closeTag, openTag, '## `' + member + (entry.isCtor() ? '.prototype`' : '`'));
+          result.push(closeTag, openTag, '## `' + member + (!entry.isCtor() ? '.prototype`' : '`'));
         }
         entry[kind].forEach(function(subentry){
           subentry.member = member;
