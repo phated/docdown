@@ -9,6 +9,7 @@
   "scripts": {
     "install": "volo add"
   },
+  "main": "docdown",
   "dependencies": {
     "underscore.string": "~2.3.1",
     "lodash": "~1.0.0-rc.3",

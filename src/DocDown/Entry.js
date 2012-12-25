@@ -135,6 +135,7 @@ Entry.prototype.getCall = function() {
   }
 
   var result = new RegExp('\\*/\\s*(?:function ([^(]*)|(.*?)(?=[:=,]|return\\b))', 'g').exec(this.entry);
+    // console.log(result, this.entry);
   // var result = this.entry.match(new RegExp('\\*/\\s*(?:function ([^(]*)|(.*?)(?=[:=,]|return\\b))', 'g'));
   if(result){
     // result = result[0].replace(new RegExp('\\*\\/\\n', 'g'), '');
@@ -273,8 +274,10 @@ Entry.prototype.getMembers = function(index) {
 
   if (!this.members) {
     var result = new RegExp('\\* *@member(?:Of)?\\s+([^\\n]+)', 'g').exec(this.entry);
+    // console.log(result);
     if (result && result.length) {
       result = result[1].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
+      // console.log(result);
       result = result.split(new RegExp(',\\s*'));
       result.sort(natsort);
     }
@@ -412,7 +415,7 @@ Entry.prototype.isAlias = function() {
 Entry.prototype.isCtor = function() {
   'use strict';
 
-  if (!this._isCtor) {
+  if (_.isUndefined(this._isCtor)) {
     this._isCtor = !!this.entry.match(new RegExp('\\* *@constructor\\b/', 'g'));
   }
   return this._isCtor;
@@ -427,7 +430,7 @@ Entry.prototype.isCtor = function() {
 Entry.prototype.isPlugin = function() {
   'use strict';
 
-  if (!this._isPlugin) {
+  if (_.isUndefined(this._isPlugin)) {
     this._isPlugin = !this.isCtor() && !this.isPrivate() && !this.isStatic();
   }
   return this._isPlugin;
@@ -442,7 +445,7 @@ Entry.prototype.isPlugin = function() {
 Entry.prototype.isPrivate = function() {
   'use strict';
 
-  if (!this._isPrivate) {
+  if (_.isUndefined(this._isPrivate)) {
     this._isPrivate = !!this.entry.match(new RegExp('\\* *@private\\b/', 'g')) || !this.entry.match(new RegExp('\\* *@[a-z]+\\b', 'g'));
   }
   return this._isPrivate;
@@ -457,7 +460,7 @@ Entry.prototype.isPrivate = function() {
 Entry.prototype.isStatic = function() {
   'use strict';
 
-  if (this._isStatic) {
+  if (_.isUndefined(this._isStatic)) {
     return this._isStatic;
   }
 
