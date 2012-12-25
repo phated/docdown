@@ -107,10 +107,10 @@ Entry.prototype.getAliases = function(index) {
   'use strict';
 
   if (_.isUndefined(this.aliases)) {
-    var result = this.entry.match(new RegExp('\\* *@alias\\s+([^\\n]+)', 'g'));
+    var result = new RegExp('\\* *@alias\\s+([^\\n]+)', 'g').exec(this.entry);
 
     if (result && result.length) {
-      result = result[0].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
+      result = result[1].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
       result = result.split(new RegExp(',\\s*', 'g'));
       result.sort(natsort);
 

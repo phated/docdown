@@ -10,7 +10,7 @@
 * [`_.tap`](#_tapvalue-interceptor)
 * [`_.toString`](#_tostring)
 * [`_.valueOf`](#_valueof)
-* [`_.@alias value`](#_valueof)
+* [`_.value`](#_valueof)
 
 <!-- /div -->
 
@@ -19,7 +19,7 @@
 
 ## `Objects`
 * [`_.assign`](#_assignobject--source1-source2-)
-* [`_.@alias extend`](#_assignobject--source1-source2-)
+* [`_.extend`](#_assignobject--source1-source2-)
 * [`_.isArguments`](#_isargumentsvalue)
 * [`_.forIn`](#_forinobject--callbackidentity-thisarg)
 * [`_.forOwn`](#_forownobject--callbackidentity-thisarg)
@@ -28,7 +28,7 @@
 * [`_.cloneDeep`](#_clonedeepvalue)
 * [`_.defaults`](#_defaultsobject--default1-default2-)
 * [`_.functions`](#_functionsobject)
-* [`_.@alias methods`](#_functionsobject)
+* [`_.methods`](#_functionsobject)
 * [`_.has`](#_hasobject-property)
 * [`_.invert`](#_invertobject)
 * [`_.isArray`](#_isarrayvalue)
@@ -61,33 +61,33 @@
 ## `Collections`
 * [`_.at`](#_atcollection--index1-index2-)
 * [`_.contains`](#_containscollection-target--fromindex0)
-* [`_.@alias include`](#_containscollection-target--fromindex0)
+* [`_.include`](#_containscollection-target--fromindex0)
 * [`_.countBy`](#_countbycollection-callbackproperty--thisarg)
 * [`_.every`](#_everycollection--callbackidentity-thisarg)
-* [`_.@alias all`](#_everycollection--callbackidentity-thisarg)
+* [`_.all`](#_everycollection--callbackidentity-thisarg)
 * [`_.filter`](#_filtercollection--callbackidentity-thisarg)
-* [`_.@alias select`](#_filtercollection--callbackidentity-thisarg)
+* [`_.select`](#_filtercollection--callbackidentity-thisarg)
 * [`_.find`](#_findcollection--callbackidentity-thisarg)
-* [`_.@alias detect`](#_findcollection--callbackidentity-thisarg)
+* [`_.detect`](#_findcollection--callbackidentity-thisarg)
 * [`_.forEach`](#_foreachcollection--callbackidentity-thisarg)
-* [`_.@alias each`](#_foreachcollection--callbackidentity-thisarg)
+* [`_.each`](#_foreachcollection--callbackidentity-thisarg)
 * [`_.groupBy`](#_groupbycollection-callbackproperty--thisarg)
 * [`_.invoke`](#_invokecollection-methodname--arg1-arg2-)
 * [`_.map`](#_mapcollection--callbackidentity-thisarg)
-* [`_.@alias collect`](#_mapcollection--callbackidentity-thisarg)
+* [`_.collect`](#_mapcollection--callbackidentity-thisarg)
 * [`_.max`](#_maxcollection--callback-thisarg)
 * [`_.min`](#_mincollection--callback-thisarg)
 * [`_.pluck`](#_pluckcollection-property)
 * [`_.reduce`](#_reducecollection--callbackidentity-accumulator-thisarg)
-* [`_.@alias foldl`](#_reducecollection--callbackidentity-accumulator-thisarg)
+* [`_.foldl`](#_reducecollection--callbackidentity-accumulator-thisarg)
 * [`_.inject`](#_reducecollection--callbackidentity-accumulator-thisarg)
 * [`_.reduceRight`](#_reducerightcollection--callbackidentity-accumulator-thisarg)
-* [`_.@alias foldr`](#_reducerightcollection--callbackidentity-accumulator-thisarg)
+* [`_.foldr`](#_reducerightcollection--callbackidentity-accumulator-thisarg)
 * [`_.reject`](#_rejectcollection--callbackidentity-thisarg)
 * [`_.shuffle`](#_shufflecollection)
 * [`_.size`](#_sizecollection)
 * [`_.some`](#_somecollection--callbackidentity-thisarg)
-* [`_.@alias any`](#_somecollection--callbackidentity-thisarg)
+* [`_.any`](#_somecollection--callbackidentity-thisarg)
 * [`_.sortBy`](#_sortbycollection-callbackproperty--thisarg)
 * [`_.toArray`](#_toarraycollection)
 * [`_.where`](#_wherecollection-properties)
@@ -101,7 +101,7 @@
 * [`_.compact`](#_compactarray)
 * [`_.difference`](#_differencearray--array1-array2-)
 * [`_.first`](#_firstarray--n)
-* [`_.@alias head`](#_firstarray--n)
+* [`_.head`](#_firstarray--n)
 * [`_.take`](#_firstarray--n)
 * [`_.flatten`](#_flattenarray-shallow)
 * [`_.indexOf`](#_indexofarray-value--fromindex0)
@@ -112,12 +112,12 @@
 * [`_.object`](#_objectkeys--values)
 * [`_.range`](#_rangestart0-end--step1)
 * [`_.rest`](#_restarray--n1)
-* [`_.@alias drop`](#_restarray--n1)
+* [`_.drop`](#_restarray--n1)
 * [`_.tail`](#_restarray--n1)
 * [`_.sortedIndex`](#_sortedindexarray-value--callbackidentityproperty-thisarg)
 * [`_.union`](#_unionarray1-array2-)
 * [`_.uniq`](#_uniqarray--issortedfalse-callbackidentity-thisarg)
-* [`_.@alias unique`](#_uniqarray--issortedfalse-callbackidentity-thisarg)
+* [`_.unique`](#_uniqarray--issortedfalse-callbackidentity-thisarg)
 * [`_.without`](#_withoutarray--value1-value2-)
 * [`_.zip`](#_ziparray1-array2-)
 
@@ -271,7 +271,7 @@ Produces the `toString` result of the wrapped value.
 Extracts the wrapped value.
 
 #### Aliases
-*@alias value*
+*value*
 
 #### Returns
 *(Mixed)*: Returns the wrapped value.
@@ -304,7 +304,7 @@ Extracts the wrapped value.
 Assigns own enumerable properties of source object(s) to the `destination` object. Subsequent sources will overwrite propery assignments of previous sources.
 
 #### Aliases
-*@alias extend*
+*extend*
 
 #### Arguments
 1. `object` *(Object)*: The destination object.
@@ -558,7 +558,7 @@ Assigns own enumerable properties of source object(s) to the `destination` objec
 Creates a sorted array of all enumerable properties, own and inherited, of `object` that have function values.
 
 #### Aliases
-*@alias methods*
+*methods*
 
 #### Arguments
 1. `object` *(Object)*: The object to inspect.
@@ -1312,7 +1312,7 @@ Creates an array of elements from the specified index(es), or keys, of the `coll
 Checks if a given `target` element is present in a `collection` using strict equality for comparisons, i.e. `===`. If `fromIndex` is negative, it is used as the offset from the end of the collection.
 
 #### Aliases
-*@alias include*
+*include*
 
 #### Arguments
 1. `collection` *(Array|Object|String)*: The collection to iterate over.
@@ -1387,7 +1387,7 @@ Creates an object composed of keys returned from running each element of `collec
 Checks if the `callback` returns a truthy value for **all** elements of a `collection`. The `callback` is bound to `thisArg` and invoked with three arguments; *(value, index|key, collection)*.
 
 #### Aliases
-*@alias all*
+*all*
 
 #### Arguments
 1. `collection` *(Array|Object|String)*: The collection to iterate over.
@@ -1418,7 +1418,7 @@ Checks if the `callback` returns a truthy value for **all** elements of a `colle
 Examines each element in a `collection`, returning an array of all elements the `callback` returns truthy for. The `callback` is bound to `thisArg` and invoked with three arguments; *(value, index|key, collection)*.
 
 #### Aliases
-*@alias select*
+*select*
 
 #### Arguments
 1. `collection` *(Array|Object|String)*: The collection to iterate over.
@@ -1449,7 +1449,7 @@ Examines each element in a `collection`, returning an array of all elements the 
 Examines each element in a `collection`, returning the first one the `callback` returns truthy for. The function returns as soon as it finds an acceptable element, and does not iterate over the entire `collection`. The `callback` is bound to `thisArg` and invoked with three arguments; *(value, index|key, collection)*.
 
 #### Aliases
-*@alias detect*
+*detect*
 
 #### Arguments
 1. `collection` *(Array|Object|String)*: The collection to iterate over.
@@ -1480,7 +1480,7 @@ Examines each element in a `collection`, returning the first one the `callback` 
 Iterates over a `collection`, executing the `callback` for each element in the `collection`. The `callback` is bound to `thisArg` and invoked with three arguments; *(value, index|key, collection)*. Callbacks may exit iteration early by explicitly returning `false`.
 
 #### Aliases
-*@alias each*
+*each*
 
 #### Arguments
 1. `collection` *(Array|Object|String)*: The collection to iterate over.
@@ -1581,7 +1581,7 @@ Invokes the method named by `methodName` on each element in the `collection`, re
 Creates an array of values by running each element in the `collection` through a `callback`. The `callback` is bound to `thisArg` and invoked with three arguments; *(value, index|key, collection)*.
 
 #### Aliases
-*@alias collect*
+*collect*
 
 #### Arguments
 1. `collection` *(Array|Object|String)*: The collection to iterate over.
@@ -1710,7 +1710,7 @@ Retrieves the value of a specified property from all elements in the `collection
 Reduces a `collection` to a single value. The initial state of the reduction is `accumulator` and each successive step of it should be returned by the `callback`. The `callback` is bound to `thisArg` and invoked with four arguments; for arrays they are *(accumulator, value, index|key, collection)*.
 
 #### Aliases
-*@alias foldl, inject*
+*foldl, inject*
 
 #### Arguments
 1. `collection` *(Array|Object|String)*: The collection to iterate over.
@@ -1742,7 +1742,7 @@ Reduces a `collection` to a single value. The initial state of the reduction is 
 The right-associative version of `_.reduce`.
 
 #### Aliases
-*@alias foldr*
+*foldr*
 
 #### Arguments
 1. `collection` *(Array|Object|String)*: The collection to iterate over.
@@ -1861,7 +1861,7 @@ Gets the size of the `collection` by returning `collection.length` for arrays an
 Checks if the `callback` returns a truthy value for **any** element of a `collection`. The function returns as soon as it finds passing value, and does not iterate over the entire `collection`. The `callback` is bound to `thisArg` and invoked with three arguments; *(value, index|key, collection)*.
 
 #### Aliases
-*@alias any*
+*any*
 
 #### Arguments
 1. `collection` *(Array|Object|String)*: The collection to iterate over.
@@ -2046,7 +2046,7 @@ Creates an array of `array` elements not present in the other arrays using stric
 Gets the first element of the `array`. Pass `n` to return the first `n` elements of the `array`.
 
 #### Aliases
-*@alias head, take*
+*head, take*
 
 #### Arguments
 1. `array` *(Array)*: The array to query.
@@ -2319,7 +2319,7 @@ Creates an array of numbers *(positive and/or negative)* progressing from `start
 The opposite of `_.initial`, this method gets all but the first value of `array`. Pass `n` to exclude the first `n` values from the result.
 
 #### Aliases
-*@alias drop, tail*
+*drop, tail*
 
 #### Arguments
 1. `array` *(Array)*: The array to query.
@@ -2422,7 +2422,7 @@ Computes the union of the passed-in arrays using strict equality for comparisons
 Creates a duplicate-value-free version of the `array` using strict equality for comparisons, i.e. `===`. If the `array` is already sorted, passing `true` for `isSorted` will run a faster algorithm. If `callback` is passed, each element of `array` is passed through a callback` before uniqueness is computed. The `callback` is bound to `thisArg` and invoked with three arguments; *(value, index, array)*.
 
 #### Aliases
-*@alias unique*
+*unique*
 
 #### Arguments
 1. `array` *(Array)*: The array to process.
