@@ -256,14 +256,8 @@ Entry.prototype.getLineNumber = function() {
   'use strict';
 
   if (_.isUndefined(this.lineNumber)) {
-    // console.log(new RegExp('\\n', 'g').execAll(this.source.substr(0, this.source.indexOf(this.entry) + this.entry.length)));
     var lines = new RegExp('\\n', 'g').execAll(this.source.substr(0, this.source.indexOf(this.entry) + this.entry.length));
-    // console.log(lines.length);
-    // console.log(this.source.substr(0, this.source.indexOf(this.entry) + this.entry.length));
-    // var lines = this.source.substr(0, this.source.indexOf(this.entry) + this.entry.length).match(new RegExp('\\n', 'g'));
-    // console.log(lines);
-    // this.lineNumber = lines.pop().length + 1;
-    this.lineNumber = lines.length;
+    this.lineNumber = lines.length + 1;
   }
   return this.lineNumber;
 };
