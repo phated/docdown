@@ -2,7 +2,10 @@ var Alias = require('./Alias');
 
 var os = require('os');
 var _ = require('lodash');
-var _str = require('underscore.string');
+var _ = require('lodash');
+_.str = require('underscore.string');
+
+_.mixin(_.str.exports());
 var natsort = require('../../javascript-natural-sort/naturalSort');
 
 // Return all pattern matches with captured groups
@@ -72,7 +75,7 @@ function Entry(entry, source, lang){
 Entry.prototype.getEntries = function(source) {
   'use strict';
 
-  var result = source.match(new RegExp('\\*\\*(?![-!])[\\s\\S]*?\\*/\\s*[^\n]+', 'g'));
+  var result = new RegExp('\\*\\*(?![-!])[\\s\\S]*?\\*/\\s*[^\n]+', 'g').execAll(source);
   // return result.pop();
   return result;
 };
@@ -87,7 +90,7 @@ Entry.prototype.getEntries = function(source) {
 Entry.prototype.isFunction = function() {
   'use strict';
 
-  if (!this._isFunction) {
+  if (_.isUndefined(this._isFunction)) {
     this._isFunction = !!(this.isCtor() || (this.getParams() && this.getParams().length) || (this.getReturns() && this.getReturns().length) || this.entry.match('\\* *@function\\b'));
   }
   return this._isFunction;
@@ -103,17 +106,17 @@ Entry.prototype.isFunction = function() {
 Entry.prototype.getAliases = function(index) {
   'use strict';
 
-  if (!this.aliases) {
+  if (_.isUndefined(this.aliases)) {
     var result = this.entry.match(new RegExp('\\* *@alias\\s+([^\\n]+)', 'g'));
 
     if (result && result.length) {
-      result = result[1].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
+      result = result[0].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
       result = result.split(new RegExp(',\\s*', 'g'));
       result.sort(natsort);
 
-      result.forEach(function(value, resultIndex){
+      _.forEach(result, function(value, resultIndex){
         result[resultIndex] = new Alias(value, this);
-      });
+      }, this);
     }
     this.aliases = result;
   }
@@ -130,12 +133,11 @@ Entry.prototype.getAliases = function(index) {
 Entry.prototype.getCall = function() {
   'use strict';
 
-  if (this.call) {
+  if (!_.isUndefined(this.call)) {
     return this.call;
   }
 
   var result = new RegExp('\\*/\\s*(?:function ([^(]*)|(.*?)(?=[:=,]|return\\b))', 'g').exec(this.entry);
-    // console.log(result, this.entry);
   // var result = this.entry.match(new RegExp('\\*/\\s*(?:function ([^(]*)|(.*?)(?=[:=,]|return\\b))', 'g'));
   if(result){
     // result = result[0].replace(new RegExp('\\*\\/\\n', 'g'), '');
@@ -146,15 +148,15 @@ Entry.prototype.getCall = function() {
     }
   }
   if (result) {
-    result = _str.trim(result.split('.').pop().trim(), "'").split('var ').pop();
+    result = _.trim(result.split('.').pop().trim(), "'").split('var ').pop();
   }
   // resolve name
   // avoid this.getName() because it calls this.getCall()
-  var name = this.entry.match(new RegExp('\\* *@name\\s+([^\\n]+)', 'g'));
+  var name = new RegExp('\\* *@name\\s+([^\\n]+)', 'g').exec(this.entry);
   if (name && name.length) {
     name = name[1].trim();
   } else {
-    name = result;
+    name = result ? result : '';
   }
   // compile function call syntax
   if (this.isFunction()) {
@@ -183,13 +185,13 @@ Entry.prototype.getCall = function() {
 Entry.prototype.getCategory = function() {
   'use strict';
 
-  if (this.category) {
+  if (!_.isUndefined(this.category)) {
     return this.category;
   }
 
   var result = this.entry.match(new RegExp('\\* *@category\\s+([^\\n]+)', 'g'));
   if (result && result.length) {
-    result = result[1].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
+    result = result[0].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
   } else {
     result = this.getType() == 'Function' ? 'Methods' : 'Properties';
   }
@@ -206,7 +208,7 @@ Entry.prototype.getCategory = function() {
 Entry.prototype.getDesc = function() {
   'use strict';
 
-  if (this.desc) {
+  if (!_.isUndefined(this.desc)) {
     return this.desc;
   }
 
@@ -218,7 +220,7 @@ Entry.prototype.getDesc = function() {
     result = result.replace(new RegExp('(?:^|\\n) *\\*\\n *\\* *', 'g'), "\n\n");
     result = result.replace(new RegExp('(?:^|\\n) *\\* ?', 'g'), ' ');
     result = result.trim();
-    result = (type == 'Function' ? '' : '(' + _str.trim(type, '{}').replace(new RegExp('\\|', 'g'), ', ') + '): ') + result;
+    result = (type == 'Function' ? '' : '(' + _.trim(type, '{}').replace(new RegExp('\\|', 'g'), ', ') + '): ') + result;
   }
   this.desc = result;
   return result;
@@ -233,7 +235,7 @@ Entry.prototype.getDesc = function() {
 Entry.prototype.getExample = function() {
   'use strict';
 
-  if (this.example) {
+  if (!_.isUndefined(this.example)) {
     return this.example;
   }
 
@@ -272,12 +274,10 @@ Entry.prototype.getLineNumber = function() {
 Entry.prototype.getMembers = function(index) {
   'use strict';
 
-  if (!this.members) {
+  if (_.isUndefined(this.members)) {
     var result = new RegExp('\\* *@member(?:Of)?\\s+([^\\n]+)', 'g').exec(this.entry);
-    // console.log(result);
     if (result && result.length) {
       result = result[1].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
-      // console.log(result);
       result = result.split(new RegExp(',\\s*'));
       result.sort(natsort);
     }
@@ -295,7 +295,7 @@ Entry.prototype.getMembers = function(index) {
 Entry.prototype.getName = function() {
   'use strict';
 
-  if (this.name) {
+  if (!_.isUndefined(this.name)) {
     return this.name;
   }
 
@@ -319,7 +319,7 @@ Entry.prototype.getName = function() {
 Entry.prototype.getParams = function(index) {
   'use strict';
 
-  if (!this.params) {
+  if (_.isUndefined(this.params)) {
     // var result = this.entry.match(new RegExp('\\* *@param\\s+\\{([^}]+)\\}\\s+(\\[.+\\]|[$\\w|]+(?:\\[.+\\])?)\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'gi'));
     var result = new RegExp('\\* *@param\\s+\\{([^}]+)\\}\\s+(\\[.+\\]|[$\\w|]+(?:\\[.+\\])?)\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'gi').execAll(this.entry);
     if(result){
@@ -327,20 +327,13 @@ Entry.prototype.getParams = function(index) {
         return !!value;
       });
     }
-    // console.log(result);
     if (result && result.length) {
       result.forEach(function(param){
-    //     // console.log(param);
         param.forEach(function(value, key){
-    //       if(!Array.isArray(result[0][key])){
-    //         result[0][key] = [];
-    //       }
-    //       result[0][key].push(value.replace(new RegExp('(?:^|\\n)\\s*\\* *', 'g'), ' ').trim());
           value = value.replace(new RegExp('(?:^|\\n)\\s*\\* *', 'g'), ' ').trim();
         });
       });
     }
-    // console.log(result);
     this.params = result;
   }
   return typeof index !== 'undefined' && index !== null ? this.params[index] : this.params;
@@ -355,7 +348,7 @@ Entry.prototype.getParams = function(index) {
 Entry.prototype.getReturns = function() {
   'use strict';
 
-  if (this.returns) {
+  if (!_.isUndefined(this.returns)) {
     return this.returns;
   }
 
@@ -380,7 +373,7 @@ Entry.prototype.getReturns = function() {
 Entry.prototype.getType = function() {
   'use strict';
 
-  if (this.type) {
+  if (!_.isUndefined(this.type)) {
     return this.type;
   }
 

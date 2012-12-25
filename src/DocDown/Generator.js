@@ -96,6 +96,7 @@ function Generator(source, options) {
   this.entries = Entry.prototype.getEntries(this.source);
 
   _.forEach(this.entries, function(value, index){
+    value = value.pop();
     this.entries[index] = new Entry(value, this.source, options.lang);
   }, this);
 }
@@ -249,6 +250,8 @@ Generator.prototype.getHash = function(entry, member) {
   'use strict';
 
   entry = _.isNumber(entry) ? this.entries[entry] : entry;
+  // if(entry === 'VERSION') console.log(entry);
+  console.log(Object.keys(entry));
   member = !member ? entry.getMembers(0) : member;
   var result = (member ? member + (entry.isPlugin() ? 'prototype' : '') : '') + entry.getCall();
   result = result.replace(new RegExp('\\(\\[|\\[\\]', 'g'), '');
@@ -306,6 +309,7 @@ Generator.prototype.generate = function() {
   // initialize api arraye
   _.forEach(this.entries, function(entry){
     var name = entry.getName();
+    console.log(name);
     // skip invalid or private entries
     if(name && !entry.isPrivate()){
       var members = entry.getMembers();
@@ -356,7 +360,7 @@ Generator.prototype.generate = function() {
         }
       });
     }
-  });
+  }, this);
 
   // add properties to each entry
   _.forEach(api, function(entry){
