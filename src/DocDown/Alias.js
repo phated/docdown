@@ -14,15 +14,18 @@ function Alias(name, owner){
   this.category = owner.getCategory();
   this.desc = owner.getDesc();
   this.example = owner.getExample();
+
+  this._isCtor = owner.isCtor();
+  this._isLicense = owner.isLicense();
+  this._isPlugin = owner.isPlugin();
+  this._isPrivate = owner.isPrivate();
+  this._isStatic = owner.isStatic();
+
   this.lineNumber = owner.getLineNumber();
   this.members = owner.getMembers();
   this.params = owner.getParams();
   this.returns = owner.getReturns();
   this.type = owner.getType();
-  this._isCtor = owner.isCtor();
-  this._isPlugin = owner.isPlugin();
-  this._isPrivate = owner.isPrivate();
-  this._isStatic = owner.isStatic();
 }
 
 /**
@@ -85,6 +88,78 @@ Alias.prototype.getExample = function() {
   'use strict';
 
   return this.example;
+};
+
+/**
+ * Checks if the entry is an alias.
+ *
+ * @memberOf Alias
+ * @returns {Boolean} Returns `true`.
+ */
+Alias.prototype.isAlias = function() {
+  'use strict';
+
+  return true;
+};
+
+/**
+ * Checks if the owner entry is a constructor.
+ *
+ * @memberOf Alias
+ * @returns {Boolean} Returns `true` if a constructor, else `false`.
+ */
+Alias.prototype.isCtor = function() {
+  'use strict';
+
+  return this._isCtor;
+};
+
+/**
+ * Checks if the owner entry is a license.
+ *
+ * @memberOf Alias
+ * @returns {Boolean} Returns `true` if a license, else `false`.
+ */
+Alias.prototype.isLicense = function() {
+  'use strict';
+
+  return this._isLicense;
+};
+
+/**
+ * Checks if the owner entry *is* assigned to a prototype.
+ *
+ * @memberOf Alias
+ * @returns {Boolean} Returns `true` if assigned to a prototype, else `false`.
+ */
+Alias.prototype.isPlugin = function() {
+  'use strict';
+
+  return this._isPlugin;
+};
+
+/**
+ * Checks if the owner entry is private.
+ *
+ * @memberOf Alias
+ * @returns {Boolean} Returns `true` if private, else `false`.
+ */
+Alias.prototype.isPrivate = function() {
+  'use strict';
+
+  return this._isPrivate;
+};
+
+/**
+ * Checks if the owner entry is *not* assigned to a prototype.
+ *
+ * @memberOf Alias
+ * @returns {Boolean} Returns `true` if not assigned to a prototype, else `false`.
+ */
+Alias.prototype.isStatic = function() {
+  'use strict';
+
+  return this._isStatic;
 };
 
 /**
@@ -159,66 +234,6 @@ Alias.prototype.getType = function() {
   'use strict';
 
   return this.type;
-};
-
-/**
- * Checks if the entry is an alias.
- *
- * @memberOf Alias
- * @returns {Boolean} Returns `true`.
- */
-Alias.prototype.isAlias = function() {
-  'use strict';
-
-  return true;
-};
-
-/**
- * Checks if the owner entry is a constructor.
- *
- * @memberOf Alias
- * @returns {Boolean} Returns `true` if a constructor, else `false`.
- */
-Alias.prototype.isCtor = function() {
-  'use strict';
-
-  return this._isCtor;
-};
-
-/**
- * Checks if the owner entry *is* assigned to a prototype.
- *
- * @memberOf Alias
- * @returns {Boolean} Returns `true` if assigned to a prototype, else `false`.
- */
-Alias.prototype.isPlugin = function() {
-  'use strict';
-
-  return this._isPlugin;
-};
-
-/**
- * Checks if the owner entry is private.
- *
- * @memberOf Alias
- * @returns {Boolean} Returns `true` if private, else `false`.
- */
-Alias.prototype.isPrivate = function() {
-  'use strict';
-
-  return this._isPrivate;
-};
-
-/**
- * Checks if the owner entry is *not* assigned to a prototype.
- *
- * @memberOf Alias
- * @returns {Boolean} Returns `true` if not assigned to a prototype, else `false`.
- */
-Alias.prototype.isStatic = function() {
-  'use strict';
-
-  return this._isStatic;
 };
 
 module.exports = Alias;

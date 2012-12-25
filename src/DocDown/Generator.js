@@ -7,6 +7,13 @@ var _ = require('lodash');
 _.str = require('underscore.string');
 
 _.mixin(_.str.exports());
+
+function escapeRegExp(str) {
+  'use strict';
+
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
+
 /**
  * Generates Markdown from JSDoc entries.
  */
@@ -119,7 +126,7 @@ Generator.prototype.format = function(string) {
   var tokenized = string.match(new RegExp('`[^`]+`', 'g'));
   if(tokenized){
     tokenized.forEach(function(snippet){
-      string = string.replace(new RegExp(snippet, 'g'), '__token' + (counter++) + '__');
+      string = string.replace(new RegExp(escapeRegExp(snippet), 'g'), '__token' + (counter++) + '__');
     });
   }
 
@@ -250,8 +257,6 @@ Generator.prototype.getHash = function(entry, member) {
   'use strict';
 
   entry = _.isNumber(entry) ? this.entries[entry] : entry;
-  // if(entry === 'VERSION') console.log(entry);
-  console.log(Object.keys(entry));
   member = !member ? entry.getMembers(0) : member;
   var result = (member ? member + (entry.isPlugin() ? 'prototype' : '') : '') + entry.getCall();
   result = result.replace(new RegExp('\\(\\[|\\[\\]', 'g'), '');
@@ -309,7 +314,6 @@ Generator.prototype.generate = function() {
   // initialize api arraye
   _.forEach(this.entries, function(entry){
     var name = entry.getName();
-    console.log(name);
     // skip invalid or private entries
     if(name && !entry.isPrivate()){
       var members = entry.getMembers();
@@ -363,7 +367,7 @@ Generator.prototype.generate = function() {
   }, this);
 
   // add properties to each entry
-  _.forEach(api, function(entry){
+  _.forEach(api, function(entry, key){
     entry.hash = this.getHash(entry);
     entry.href = this.getLineUrl(entry);
 
@@ -443,13 +447,19 @@ Generator.prototype.generate = function() {
   // add categories
   _.forEach(api, function(entry){
     var category = entry.getCategory();
-    categories[category] = Array.isArray(categories[category]) ? categories[category].push(entry) : [entry];
-    // categories[entry.getCategory()].push(entry);
+    if(Array.isArray(categories[category])){
+      categories[category].push(entry);
+    } else {
+      categories[category] = [entry];
+    }
     ['static', 'plugin'].forEach(function(kind){
       entry[kind].forEach(function(subentry){
         var category = subentry.getCategory();
-        categories[category] = Array.isArray(categories[category]) ? categories[category].push(subentry) : [subentry];
-        // categories[subentry.getCategory()].push(subentry);
+        if(Array.isArray(categories[category])){
+          categories[category].push(subentry);
+        } else {
+          categories[category] = [subentry];
+        }
       });
     });
   });
@@ -473,7 +483,7 @@ Generator.prototype.generate = function() {
 
   // compile toc by categories
   if (byCategory) {
-    categories.forEach(function(entries, category){
+    _.forEach(categories, function(entries, category){
       if(compiling){
         result.push(closeTag);
       } else {
@@ -528,7 +538,7 @@ Generator.prototype.generate = function() {
   result.push(openTag);
 
   if (byCategory) {
-    categories.forEach(function(entries, category){
+    _.forEach(categories, function(entries, category){
       if(compiling){
         result.push(closeTag);
       } else {
@@ -539,7 +549,7 @@ Generator.prototype.generate = function() {
       }
       result.push(openTag, '## `' + category + '`');
       this.addEntries(result, entries);
-    });
+    }, this);
   }
   else {
     _.forEach(api, function(entry){

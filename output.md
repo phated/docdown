@@ -7,29 +7,23 @@
 
 ## <a id="Alias"></a>`Alias`
 * [`Alias`](#aliasname-owner)
-
-<!-- /div -->
-
-
-<!-- div -->
-
-## `Alias.prototype`
-* [`Alias.prototype.getAliases`](#aliasprototypegetaliasesindex)
-* [`Alias.prototype.getCall`](#aliasprototypegetcall)
-* [`Alias.prototype.getCategory`](#aliasprototypegetcategory)
-* [`Alias.prototype.getDesc`](#aliasprototypegetdesc)
-* [`Alias.prototype.getExample`](#aliasprototypegetexample)
-* [`Alias.prototype.getLineNumber`](#aliasprototypegetlinenumber)
-* [`Alias.prototype.getMembers`](#aliasprototypegetmembersindex)
-* [`Alias.prototype.getName`](#aliasprototypegetname)
-* [`Alias.prototype.getParams`](#aliasprototypegetparamsindex)
-* [`Alias.prototype.getReturns`](#aliasprototypegetreturns)
-* [`Alias.prototype.getType`](#aliasprototypegettype)
-* [`Alias.prototype.isAlias`](#aliasprototypeisalias)
-* [`Alias.prototype.isCtor`](#aliasprototypeisctor)
-* [`Alias.prototype.isPlugin`](#aliasprototypeisplugin)
-* [`Alias.prototype.isPrivate`](#aliasprototypeisprivate)
-* [`Alias.prototype.isStatic`](#aliasprototypeisstatic)
+* [`Alias.getAliases`](#aliasgetaliasesindex)
+* [`Alias.getCall`](#aliasgetcall)
+* [`Alias.getCategory`](#aliasgetcategory)
+* [`Alias.getDesc`](#aliasgetdesc)
+* [`Alias.getExample`](#aliasgetexample)
+* [`Alias.isAlias`](#aliasisalias)
+* [`Alias.isCtor`](#aliasisctor)
+* [`Alias.isLicense`](#aliasislicense)
+* [`Alias.isPlugin`](#aliasisplugin)
+* [`Alias.isPrivate`](#aliasisprivate)
+* [`Alias.isStatic`](#aliasisstatic)
+* [`Alias.getLineNumber`](#aliasgetlinenumber)
+* [`Alias.getMembers`](#aliasgetmembersindex)
+* [`Alias.getName`](#aliasgetname)
+* [`Alias.getParams`](#aliasgetparamsindex)
+* [`Alias.getReturns`](#aliasgetreturns)
+* [`Alias.getType`](#aliasgettype)
 
 <!-- /div -->
 
@@ -60,17 +54,10 @@ The Alias constructor.
 <!-- /div -->
 
 
-<!-- /div -->
-
-
 <!-- div -->
 
-## `Alias.prototype`
-
-<!-- div -->
-
-### <a id="aliasprototypegetaliasesindex"></a>`Alias.prototype.getAliases(index)`
-<a href="#aliasprototypegetaliasesindex">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L35 "View in source") [&#x24C9;][1]
+### <a id="aliasgetaliasesindex"></a>`Alias.getAliases(index)`
+<a href="#aliasgetaliasesindex">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L38 "View in source") [&#x24C9;][1]
 
 Extracts the entry's `alias` objects.
 
@@ -87,8 +74,8 @@ Extracts the entry's `alias` objects.
 
 <!-- div -->
 
-### <a id="aliasprototypegetcall"></a>`Alias.prototype.getCall()`
-<a href="#aliasprototypegetcall">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L48 "View in source") [&#x24C9;][1]
+### <a id="aliasgetcall"></a>`Alias.getCall()`
+<a href="#aliasgetcall">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L51 "View in source") [&#x24C9;][1]
 
 Extracts the function call from the owner entry.
 
@@ -102,8 +89,8 @@ Extracts the function call from the owner entry.
 
 <!-- div -->
 
-### <a id="aliasprototypegetcategory"></a>`Alias.prototype.getCategory()`
-<a href="#aliasprototypegetcategory">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L60 "View in source") [&#x24C9;][1]
+### <a id="aliasgetcategory"></a>`Alias.getCategory()`
+<a href="#aliasgetcategory">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L63 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `category` data.
 
@@ -117,8 +104,8 @@ Extracts the owner entry's `category` data.
 
 <!-- div -->
 
-### <a id="aliasprototypegetdesc"></a>`Alias.prototype.getDesc()`
-<a href="#aliasprototypegetdesc">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L72 "View in source") [&#x24C9;][1]
+### <a id="aliasgetdesc"></a>`Alias.getDesc()`
+<a href="#aliasgetdesc">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L75 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's description.
 
@@ -132,8 +119,8 @@ Extracts the owner entry's description.
 
 <!-- div -->
 
-### <a id="aliasprototypegetexample"></a>`Alias.prototype.getExample()`
-<a href="#aliasprototypegetexample">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L84 "View in source") [&#x24C9;][1]
+### <a id="aliasgetexample"></a>`Alias.getExample()`
+<a href="#aliasgetexample">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L87 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `example` data.
 
@@ -147,8 +134,98 @@ Extracts the owner entry's `example` data.
 
 <!-- div -->
 
-### <a id="aliasprototypegetlinenumber"></a>`Alias.prototype.getLineNumber()`
-<a href="#aliasprototypegetlinenumber">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L96 "View in source") [&#x24C9;][1]
+### <a id="aliasisalias"></a>`Alias.isAlias()`
+<a href="#aliasisalias">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L99 "View in source") [&#x24C9;][1]
+
+Checks if the entry is an alias.
+
+#### Returns
+*(Boolean)*: Returns `true`.
+
+* * *
+
+<!-- /div -->
+
+
+<!-- div -->
+
+### <a id="aliasisctor"></a>`Alias.isCtor()`
+<a href="#aliasisctor">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L111 "View in source") [&#x24C9;][1]
+
+Checks if the owner entry is a constructor.
+
+#### Returns
+*(Boolean)*: Returns `true` if a constructor, else `false`.
+
+* * *
+
+<!-- /div -->
+
+
+<!-- div -->
+
+### <a id="aliasislicense"></a>`Alias.isLicense()`
+<a href="#aliasislicense">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L123 "View in source") [&#x24C9;][1]
+
+Checks if the owner entry is a license.
+
+#### Returns
+*(Boolean)*: Returns `true` if a license, else `false`.
+
+* * *
+
+<!-- /div -->
+
+
+<!-- div -->
+
+### <a id="aliasisplugin"></a>`Alias.isPlugin()`
+<a href="#aliasisplugin">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L135 "View in source") [&#x24C9;][1]
+
+Checks if the owner entry *is* assigned to a prototype.
+
+#### Returns
+*(Boolean)*: Returns `true` if assigned to a prototype, else `false`.
+
+* * *
+
+<!-- /div -->
+
+
+<!-- div -->
+
+### <a id="aliasisprivate"></a>`Alias.isPrivate()`
+<a href="#aliasisprivate">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L147 "View in source") [&#x24C9;][1]
+
+Checks if the owner entry is private.
+
+#### Returns
+*(Boolean)*: Returns `true` if private, else `false`.
+
+* * *
+
+<!-- /div -->
+
+
+<!-- div -->
+
+### <a id="aliasisstatic"></a>`Alias.isStatic()`
+<a href="#aliasisstatic">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L159 "View in source") [&#x24C9;][1]
+
+Checks if the owner entry is *not* assigned to a prototype.
+
+#### Returns
+*(Boolean)*: Returns `true` if not assigned to a prototype, else `false`.
+
+* * *
+
+<!-- /div -->
+
+
+<!-- div -->
+
+### <a id="aliasgetlinenumber"></a>`Alias.getLineNumber()`
+<a href="#aliasgetlinenumber">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L171 "View in source") [&#x24C9;][1]
 
 Resolves the owner entry's line number.
 
@@ -162,8 +239,8 @@ Resolves the owner entry's line number.
 
 <!-- div -->
 
-### <a id="aliasprototypegetmembersindex"></a>`Alias.prototype.getMembers(index)`
-<a href="#aliasprototypegetmembersindex">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L109 "View in source") [&#x24C9;][1]
+### <a id="aliasgetmembersindex"></a>`Alias.getMembers(index)`
+<a href="#aliasgetmembersindex">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L184 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `member` data.
 
@@ -180,8 +257,8 @@ Extracts the owner entry's `member` data.
 
 <!-- div -->
 
-### <a id="aliasprototypegetname"></a>`Alias.prototype.getName()`
-<a href="#aliasprototypegetname">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L121 "View in source") [&#x24C9;][1]
+### <a id="aliasgetname"></a>`Alias.getName()`
+<a href="#aliasgetname">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L196 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `name` data.
 
@@ -195,8 +272,8 @@ Extracts the owner entry's `name` data.
 
 <!-- div -->
 
-### <a id="aliasprototypegetparamsindex"></a>`Alias.prototype.getParams(index)`
-<a href="#aliasprototypegetparamsindex">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L134 "View in source") [&#x24C9;][1]
+### <a id="aliasgetparamsindex"></a>`Alias.getParams(index)`
+<a href="#aliasgetparamsindex">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L209 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `param` data.
 
@@ -213,8 +290,8 @@ Extracts the owner entry's `param` data.
 
 <!-- div -->
 
-### <a id="aliasprototypegetreturns"></a>`Alias.prototype.getReturns()`
-<a href="#aliasprototypegetreturns">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L146 "View in source") [&#x24C9;][1]
+### <a id="aliasgetreturns"></a>`Alias.getReturns()`
+<a href="#aliasgetreturns">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L221 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `returns` data.
 
@@ -228,88 +305,13 @@ Extracts the owner entry's `returns` data.
 
 <!-- div -->
 
-### <a id="aliasprototypegettype"></a>`Alias.prototype.getType()`
-<a href="#aliasprototypegettype">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L158 "View in source") [&#x24C9;][1]
+### <a id="aliasgettype"></a>`Alias.getType()`
+<a href="#aliasgettype">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L233 "View in source") [&#x24C9;][1]
 
 Extracts the owner entry's `type` data.
 
 #### Returns
 *(String)*: The owner entry's `type` data.
-
-* * *
-
-<!-- /div -->
-
-
-<!-- div -->
-
-### <a id="aliasprototypeisalias"></a>`Alias.prototype.isAlias()`
-<a href="#aliasprototypeisalias">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L170 "View in source") [&#x24C9;][1]
-
-Checks if the entry is an alias.
-
-#### Returns
-*(Boolean)*: Returns `true`.
-
-* * *
-
-<!-- /div -->
-
-
-<!-- div -->
-
-### <a id="aliasprototypeisctor"></a>`Alias.prototype.isCtor()`
-<a href="#aliasprototypeisctor">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L182 "View in source") [&#x24C9;][1]
-
-Checks if the owner entry is a constructor.
-
-#### Returns
-*(Boolean)*: Returns `true` if a constructor, else `false`.
-
-* * *
-
-<!-- /div -->
-
-
-<!-- div -->
-
-### <a id="aliasprototypeisplugin"></a>`Alias.prototype.isPlugin()`
-<a href="#aliasprototypeisplugin">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L194 "View in source") [&#x24C9;][1]
-
-Checks if the owner entry *is* assigned to a prototype.
-
-#### Returns
-*(Boolean)*: Returns `true` if assigned to a prototype, else `false`.
-
-* * *
-
-<!-- /div -->
-
-
-<!-- div -->
-
-### <a id="aliasprototypeisprivate"></a>`Alias.prototype.isPrivate()`
-<a href="#aliasprototypeisprivate">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L206 "View in source") [&#x24C9;][1]
-
-Checks if the owner entry is private.
-
-#### Returns
-*(Boolean)*: Returns `true` if private, else `false`.
-
-* * *
-
-<!-- /div -->
-
-
-<!-- div -->
-
-### <a id="aliasprototypeisstatic"></a>`Alias.prototype.isStatic()`
-<a href="#aliasprototypeisstatic">#</a> [&#x24C8;](https://github.com/phated/docdown/blob/js/src/DocDown/Alias.js#L218 "View in source") [&#x24C9;][1]
-
-Checks if the owner entry is *not* assigned to a prototype.
-
-#### Returns
-*(Boolean)*: Returns `true` if not assigned to a prototype, else `false`.
 
 * * *
 

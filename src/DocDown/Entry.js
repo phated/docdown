@@ -45,7 +45,7 @@ function Entry(entry, source, lang){
    * @memberOf Entry
    * @type String
    */
-  this.entry = entry !== null && entry !== undefined ? entry : '';
+  this.entry = typeof entry !== 'undefined' && entry !== null ? entry : '';
 
   /**
    * The language highlighter used for code examples.
@@ -53,7 +53,7 @@ function Entry(entry, source, lang){
    * @memberOf Entry
    * @type String
    */
-  this.lang = lang !== null && lang !== undefined ? lang : 'js';
+  this.lang = typeof lang !== 'undefined' && lang !== null ? lang : 'js';
 
   /**
    * The source code.
@@ -93,6 +93,7 @@ Entry.prototype.isFunction = function() {
   if (_.isUndefined(this._isFunction)) {
     this._isFunction = !!(this.isCtor() || (this.getParams() && this.getParams().length) || (this.getReturns() && this.getReturns().length) || this.entry.match('\\* *@function\\b'));
   }
+  // console.log('isFunction', this._isFunction);
   return this._isFunction;
 };
 
@@ -160,14 +161,17 @@ Entry.prototype.getCall = function() {
   }
   // compile function call syntax
   if (this.isFunction()) {
+    // console.log('result', result);
     // compose parts
     result = [result];
     var params = this.getParams();
     if(params){
       _.forEach(params, function(param){
+        // console.log(param);
         result.push(param[2]);
       });
     }
+    // console.log(result);
     // format
     result = name + '(' + result.slice(1).join(', ') + ')';
     result = result.replace(new RegExp('\\], \\[', 'g'), ', ').replace(new RegExp(', \\[', 'g'), ' [, ');
@@ -189,9 +193,9 @@ Entry.prototype.getCategory = function() {
     return this.category;
   }
 
-  var result = this.entry.match(new RegExp('\\* *@category\\s+([^\\n]+)', 'g'));
+  var result = new RegExp('\\* *@category\\s+([^\\n]+)', 'g').exec(this.entry);
   if (result && result.length) {
-    result = result[0].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
+    result = result[1].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
   } else {
     result = this.getType() == 'Function' ? 'Methods' : 'Properties';
   }
@@ -239,12 +243,123 @@ Entry.prototype.getExample = function() {
     return this.example;
   }
 
-  var result = this.entry.match(new RegExp('\\* *@example\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)#', 'g'));
+  var result = this.entry.match(new RegExp('\\* *@example\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'g'));
   if (result && result.length) {
     result = result[0].replace(new RegExp('(?:^|\\n)\\s*\\* ?/', 'g'), "\n").trim();
     result = '```' + this.lang + "\n" + result + "\n```";
   }
   this.example = result;
+  return result;
+};
+
+/**
+ * Checks if the entry is an alias.
+ *
+ * @memberOf Entry
+ * @returns {Boolean} Returns `false`.
+ */
+Entry.prototype.isAlias = function() {
+  'use strict';
+
+  return false;
+};
+
+/**
+ * Checks if the entry is a constructor.
+ *
+ * @memberOf Entry
+ * @returns {Boolean} Returns `true` if a constructor, else `false`.
+ */
+Entry.prototype.isCtor = function() {
+  'use strict';
+
+  if (_.isUndefined(this._isCtor)) {
+    this._isCtor = !!this.entry.match(new RegExp('\\* *@constructor\\b/', 'g'));
+  }
+  return this._isCtor;
+};
+
+/**
+ * Checks if the entry is a license.
+ *
+ * @memberOf Entry
+ * @returns {Boolean} Returns `true` if a license, else `false`.
+ */
+Entry.prototype.isLicense = function() {
+  'use strict';
+
+  if (_.isUndefined(this._isLicense)) {
+    this._isLicense = !!this.entry.match(new RegExp('\\* *@license\\b', 'g'));
+  }
+  // console.log('isLicense', this._isLicense);
+  return this._isLicense;
+};
+
+/**
+ * Checks if the entry *is* assigned to a prototype.
+ *
+ * @memberOf Entry
+ * @returns {Boolean} Returns `true` if assigned to a prototype, else `false`.
+ */
+Entry.prototype.isPlugin = function() {
+  'use strict';
+
+  if (_.isUndefined(this._isPlugin)) {
+    this._isPlugin = !this.isCtor() && !this.isPrivate() && !this.isStatic();
+  }
+  return this._isPlugin;
+};
+
+/**
+ * Checks if the entry is private.
+ *
+ * @memberOf Entry
+ * @returns {Boolean} Returns `true` if private, else `false`.
+ */
+Entry.prototype.isPrivate = function() {
+  'use strict';
+
+  if (_.isUndefined(this._isPrivate)) {
+    this._isPrivate = this.isLicense() || !!this.entry.match(new RegExp('\\* *@private\\b/', 'g')) || !this.entry.match(new RegExp('\\* *@[a-z]+\\b', 'g'));
+  }
+  // console.log('isPrivate', this._isPrivate);
+  return this._isPrivate;
+};
+
+/**
+ * Checks if the entry is *not* assigned to a prototype.
+ *
+ * @memberOf Entry
+ * @returns {Boolean} Returns `true` if not assigned to a prototype, else `false`.
+ */
+Entry.prototype.isStatic = function() {
+  'use strict';
+
+  if (!_.isUndefined(this._isStatic)) {
+    return this._isStatic;
+  }
+
+  var pub = !this.isPrivate();
+  var result = pub && !!this.entry.match(new RegExp('\\* *@static\\b', 'g'));
+
+  // set in cases where it isn't explicitly stated
+  if (pub && !result) {
+    var parent = this.getMembers(0).split(new RegExp('[#.]')).pop();
+    if (parent) {
+      _.forEach(Entry.prototype.getEntries(this.source), function(entry){
+        // console.log(entry);
+        entry = entry.pop();
+        entry = new Entry(entry, this.source);
+        if(entry.getName() == parent){
+          result = !entry.isCtor();
+          return false;
+        }
+      }, this);
+    } else {
+      result = true;
+    }
+  }
+  this._isStatic = result;
   return result;
 };
 
@@ -299,9 +414,9 @@ Entry.prototype.getName = function() {
     return this.name;
   }
 
-  var result = this.entry.match(new RegExp('\\* *@name\\s+([^\\n]+)', 'g'));
+  var result = new RegExp('\\* *@name\\s+([^\\n]+)', 'g').exec(this.entry);
   if (result && result.length) {
-    result = result[0].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
+    result = result[1].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), ' ').trim();
   } else {
     result = this.getCall().split('(').shift();
   }
@@ -384,98 +499,6 @@ Entry.prototype.getType = function() {
     result = this.isFunction() ? 'Function' : 'Unknown';
   }
   this.type = result;
-  return result;
-};
-
-/**
- * Checks if the entry is an alias.
- *
- * @memberOf Entry
- * @returns {Boolean} Returns `false`.
- */
-Entry.prototype.isAlias = function() {
-  'use strict';
-
-  return false;
-};
-
-/**
- * Checks if the entry is a constructor.
- *
- * @memberOf Entry
- * @returns {Boolean} Returns `true` if a constructor, else `false`.
- */
-Entry.prototype.isCtor = function() {
-  'use strict';
-
-  if (_.isUndefined(this._isCtor)) {
-    this._isCtor = !!this.entry.match(new RegExp('\\* *@constructor\\b/', 'g'));
-  }
-  return this._isCtor;
-};
-
-/**
- * Checks if the entry *is* assigned to a prototype.
- *
- * @memberOf Entry
- * @returns {Boolean} Returns `true` if assigned to a prototype, else `false`.
- */
-Entry.prototype.isPlugin = function() {
-  'use strict';
-
-  if (_.isUndefined(this._isPlugin)) {
-    this._isPlugin = !this.isCtor() && !this.isPrivate() && !this.isStatic();
-  }
-  return this._isPlugin;
-};
-
-/**
- * Checks if the entry is private.
- *
- * @memberOf Entry
- * @returns {Boolean} Returns `true` if private, else `false`.
- */
-Entry.prototype.isPrivate = function() {
-  'use strict';
-
-  if (_.isUndefined(this._isPrivate)) {
-    this._isPrivate = !!this.entry.match(new RegExp('\\* *@private\\b/', 'g')) || !this.entry.match(new RegExp('\\* *@[a-z]+\\b', 'g'));
-  }
-  return this._isPrivate;
-};
-
-/**
- * Checks if the entry is *not* assigned to a prototype.
- *
- * @memberOf Entry
- * @returns {Boolean} Returns `true` if not assigned to a prototype, else `false`.
- */
-Entry.prototype.isStatic = function() {
-  'use strict';
-
-  if (_.isUndefined(this._isStatic)) {
-    return this._isStatic;
-  }
-
-  var pub = !this.isPrivate();
-  var result = pub && !!this.entry.match(new RegExp('\\* *@static\\b', 'g'));
-
-  // set in cases where it isn't explicitly stated
-  if (pub && !result) {
-    var parent = this.getMembers(0).split(new RegExp('[#.]')).pop();
-    if (parent) {
-      _.forEach(Entry.prototype.getEntries(this.source), function(entry){
-        entry = new Entry(entry, this.source);
-        if(entry.getName() == parent){
-          result = !entry.isCtor();
-          return false;
-        }
-      }, this);
-    } else {
-      result = true;
-    }
-  }
-  this._isStatic = result;
   return result;
 };
 
