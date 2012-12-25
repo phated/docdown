@@ -239,9 +239,9 @@ Entry.prototype.getExample = function() {
     return this.example;
   }
 
-  var result = this.entry.match(new RegExp('\\* *@example\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'g'));
+  var result = new RegExp('\\* *@example\\s+([\\s\\S]*?)(?=\\*\\s\\@[a-z]|\\*/)', 'g').exec(this.entry);
   if (result && result.length) {
-    result = result[0].replace(new RegExp('(?:^|\\n)\\s*\\* ?/', 'g'), "\n").trim();
+    result = result[1].replace(new RegExp('(?:^|\\n)\\s*\\* ?', 'g'), "\n").trim();
     result = '```' + this.lang + "\n" + result + "\n```";
   }
   this.example = result;

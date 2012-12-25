@@ -223,16 +223,14 @@ Invokes `interceptor` with the `value` as the first argument, and then returns `
 *(Mixed)*: Returns `value`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.chain([1, 2, 3, 200])
-   *  .filter(function(num) { return num % 2 == 0; })
-   *  .tap(alert)
-   *  .map(function(num) { return num * num; })
-   *  .value();
-/ => // [2, 200] (alerted)
-/ => [4, 40000]
+```js
+_.chain([1, 2, 3, 200])
+ .filter(function(num) { return num % 2 == 0; })
+ .tap(alert)
+ .map(function(num) { return num * num; })
+ .value();
+// => // [2, 200] (alerted)
+// => [4, 40000]
 ```
 
 * * *
@@ -251,11 +249,9 @@ Produces the `toString` result of the wrapped value.
 *(String)*: Returns the string result.
 
 #### Example
-```.js
-* @example
-   *
-   * _([1, 2, 3]).toString();
-/ => '1,2,3'
+```js
+_([1, 2, 3]).toString();
+// => '1,2,3'
 ```
 
 * * *
@@ -277,11 +273,9 @@ Extracts the wrapped value.
 *(Mixed)*: Returns the wrapped value.
 
 #### Example
-```.js
-* @example
-   *
-   * _([1, 2, 3]).valueOf();
-/ => [1, 2, 3]
+```js
+_([1, 2, 3]).valueOf();
+// => [1, 2, 3]
 ```
 
 * * *
@@ -314,11 +308,9 @@ Assigns own enumerable properties of source object(s) to the `destination` objec
 *(Object)*: Returns the destination object.
 
 #### Example
-```.js
-* @example
-   *
-   * _.assign({ 'name': 'moe' }, { 'age': 40 });
-/ => { 'name': 'moe', 'age': 40 }
+```js
+_.assign({ 'name': 'moe' }, { 'age': 40 });
+// => { 'name': 'moe', 'age': 40 }
 ```
 
 * * *
@@ -340,14 +332,12 @@ Checks if `value` is an `arguments` object.
 *(Boolean)*: Returns `true` if the `value` is an `arguments` object, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * (function() { return _.isArguments(arguments); })(1, 2, 3);
-/ => true
-   *
-   * _.isArguments([1, 2, 3]);
-/ => false
+```js
+(function() { return _.isArguments(arguments); })(1, 2, 3);
+// => true
+
+_.isArguments([1, 2, 3]);
+// => false
 ```
 
 * * *
@@ -371,21 +361,19 @@ Iterates over `object`'s own and inherited enumerable properties, executing the 
 *(Object)*: Returns `object`.
 
 #### Example
-```.js
-* @example
-   *
-   * function Dog(name) {
-   *   this.name = name;
-   * }
-   *
-   * Dog.prototype.bark = function() {
-   *   alert('Woof, woof!');
-   * };
-   *
-   * _.forIn(new Dog('Dagny'), function(value, key) {
-   *   alert(key);
-   * });
-/ => alerts 'name' and 'bark' (order is not guaranteed)
+```js
+function Dog(name) {
+  this.name = name;
+}
+
+Dog.prototype.bark = function() {
+  alert('Woof, woof!');
+};
+
+_.forIn(new Dog('Dagny'), function(value, key) {
+  alert(key);
+});
+// => alerts 'name' and 'bark' (order is not guaranteed)
 ```
 
 * * *
@@ -409,13 +397,11 @@ Iterates over an object's own enumerable properties, executing the `callback` fo
 *(Object)*: Returns `object`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.forOwn({ '0': 'zero', '1': 'one', 'length': 2 }, function(num, key) {
-   *   alert(key);
-   * });
-/ => alerts '0', '1', and 'length' (order is not guaranteed)
+```js
+_.forOwn({ '0': 'zero', '1': 'one', 'length': 2 }, function(num, key) {
+  alert(key);
+});
+// => alerts '0', '1', and 'length' (order is not guaranteed)
 ```
 
 * * *
@@ -437,11 +423,9 @@ Creates an array composed of the own enumerable property names of `object`.
 *(Array)*: Returns a new array of property names.
 
 #### Example
-```.js
-* @example
-   *
-   * _.keys({ 'one': 1, 'two': 2, 'three': 3 });
-/ => ['one', 'two', 'three'] (order is not guaranteed)
+```js
+_.keys({ 'one': 1, 'two': 2, 'three': 3 });
+// => ['one', 'two', 'three'] (order is not guaranteed)
 ```
 
 * * *
@@ -464,22 +448,20 @@ Creates a clone of `value`. If `deep` is `true`, nested objects will also be clo
 *(Mixed)*: Returns the cloned `value`.
 
 #### Example
-```.js
-* @example
-   *
-   * var stooges = [
-   *   { 'name': 'moe', 'age': 40 },
-   *   { 'name': 'larry', 'age': 50 },
-   *   { 'name': 'curly', 'age': 60 }
-   * ];
-   *
-   * var shallow = _.clone(stooges);
-   * shallow[0] === stooges[0];
-/ => true
-   *
-   * var deep = _.clone(stooges, true);
-   * deep[0] === stooges[0];
-/ => false
+```js
+var stooges = [
+  { 'name': 'moe', 'age': 40 },
+  { 'name': 'larry', 'age': 50 },
+  { 'name': 'curly', 'age': 60 }
+];
+
+var shallow = _.clone(stooges);
+shallow[0] === stooges[0];
+// => true
+
+var deep = _.clone(stooges, true);
+deep[0] === stooges[0];
+// => false
 ```
 
 * * *
@@ -503,18 +485,16 @@ Note: This function is loosely based on the structured clone algorithm. See http
 *(Mixed)*: Returns the deep cloned `value`.
 
 #### Example
-```.js
-* @example
-   *
-   * var stooges = [
-   *   { 'name': 'moe', 'age': 40 },
-   *   { 'name': 'larry', 'age': 50 },
-   *   { 'name': 'curly', 'age': 60 }
-   * ];
-   *
-   * var deep = _.cloneDeep(stooges);
-   * deep[0] === stooges[0];
-/ => false
+```js
+var stooges = [
+  { 'name': 'moe', 'age': 40 },
+  { 'name': 'larry', 'age': 50 },
+  { 'name': 'curly', 'age': 60 }
+];
+
+var deep = _.cloneDeep(stooges);
+deep[0] === stooges[0];
+// => false
 ```
 
 * * *
@@ -537,12 +517,10 @@ Assigns own enumerable properties of source object(s) to the `destination` objec
 *(Object)*: Returns the destination object.
 
 #### Example
-```.js
-* @example
-   *
-   * var iceCream = { 'flavor': 'chocolate' };
-   * _.defaults(iceCream, { 'flavor': 'vanilla', 'sprinkles': 'rainbow' });
-/ => { 'flavor': 'chocolate', 'sprinkles': 'rainbow' }
+```js
+var iceCream = { 'flavor': 'chocolate' };
+_.defaults(iceCream, { 'flavor': 'vanilla', 'sprinkles': 'rainbow' });
+// => { 'flavor': 'chocolate', 'sprinkles': 'rainbow' }
 ```
 
 * * *
@@ -567,11 +545,9 @@ Creates a sorted array of all enumerable properties, own and inherited, of `obje
 *(Array)*: Returns a new array of property names that have function values.
 
 #### Example
-```.js
-* @example
-   *
-   * _.functions(_);
-/ => ['all', 'any', 'bind', 'bindAll', 'clone', 'compact', 'compose', ...]
+```js
+_.functions(_);
+// => ['all', 'any', 'bind', 'bindAll', 'clone', 'compact', 'compose', ...]
 ```
 
 * * *
@@ -594,11 +570,9 @@ Checks if the specified object `property` exists and is a direct property, inste
 *(Boolean)*: Returns `true` if key is a direct property, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.has({ 'a': 1, 'b': 2, 'c': 3 }, 'b');
-/ => true
+```js
+_.has({ 'a': 1, 'b': 2, 'c': 3 }, 'b');
+// => true
 ```
 
 * * *
@@ -620,11 +594,9 @@ Creates an object composed of the inverted keys and values of the given `object`
 *(Object)*: Returns the created inverted object.
 
 #### Example
-```.js
-* @example
-   *
-   *  _.invert({ 'first': 'Moe', 'second': 'Larry', 'third': 'Curly' });
-/ => { 'Moe': 'first', 'Larry': 'second', 'Curly': 'third' } (order is not guaranteed)
+```js
+_.invert({ 'first': 'Moe', 'second': 'Larry', 'third': 'Curly' });
+// => { 'Moe': 'first', 'Larry': 'second', 'Curly': 'third' } (order is not guaranteed)
 ```
 
 * * *
@@ -646,14 +618,12 @@ Checks if `value` is an array.
 *(Boolean)*: Returns `true` if the `value` is an array, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * (function() { return _.isArray(arguments); })();
-/ => false
-   *
-   * _.isArray([1, 2, 3]);
-/ => true
+```js
+(function() { return _.isArray(arguments); })();
+// => false
+
+_.isArray([1, 2, 3]);
+// => true
 ```
 
 * * *
@@ -675,11 +645,9 @@ Checks if `value` is a boolean *(`true` or `false`)* value.
 *(Boolean)*: Returns `true` if the `value` is a boolean value, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isBoolean(null);
-/ => false
+```js
+_.isBoolean(null);
+// => false
 ```
 
 * * *
@@ -701,11 +669,9 @@ Checks if `value` is a date.
 *(Boolean)*: Returns `true` if the `value` is a date, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isDate(new Date);
-/ => true
+```js
+_.isDate(new Date);
+// => true
 ```
 
 * * *
@@ -727,11 +693,9 @@ Checks if `value` is a DOM element.
 *(Boolean)*: Returns `true` if the `value` is a DOM element, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isElement(document.body);
-/ => true
+```js
+_.isElement(document.body);
+// => true
 ```
 
 * * *
@@ -753,17 +717,15 @@ Checks if `value` is empty. Arrays, strings, or `arguments` objects with a lengt
 *(Boolean)*: Returns `true` if the `value` is empty, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isEmpty([1, 2, 3]);
-/ => false
-   *
-   * _.isEmpty({});
-/ => true
-   *
-   * _.isEmpty('');
-/ => true
+```js
+_.isEmpty([1, 2, 3]);
+// => false
+
+_.isEmpty({});
+// => true
+
+_.isEmpty('');
+// => true
 ```
 
 * * *
@@ -786,17 +748,15 @@ Performs a deep comparison between two values to determine if they are equivalen
 *(Boolean)*: Returns `true` if the values are equvalent, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * var moe = { 'name': 'moe', 'luckyNumbers': [13, 27, 34] };
-   * var clone = { 'name': 'moe', 'luckyNumbers': [13, 27, 34] };
-   *
-   * moe == clone;
-/ => false
-   *
-   * _.isEqual(moe, clone);
-/ => true
+```js
+var moe = { 'name': 'moe', 'luckyNumbers': [13, 27, 34] };
+var clone = { 'name': 'moe', 'luckyNumbers': [13, 27, 34] };
+
+moe == clone;
+// => false
+
+_.isEqual(moe, clone);
+// => true
 ```
 
 * * *
@@ -820,23 +780,21 @@ Note: This is not the same as native `isFinite`, which will return true for bool
 *(Boolean)*: Returns `true` if the `value` is a finite number, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isFinite(-101);
-/ => true
-   *
-   * _.isFinite('10');
-/ => true
-   *
-   * _.isFinite(true);
-/ => false
-   *
-   * _.isFinite('');
-/ => false
-   *
-   * _.isFinite(Infinity);
-/ => false
+```js
+_.isFinite(-101);
+// => true
+
+_.isFinite('10');
+// => true
+
+_.isFinite(true);
+// => false
+
+_.isFinite('');
+// => false
+
+_.isFinite(Infinity);
+// => false
 ```
 
 * * *
@@ -858,11 +816,9 @@ Checks if `value` is a function.
 *(Boolean)*: Returns `true` if the `value` is a function, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isFunction(_);
-/ => true
+```js
+_.isFunction(_);
+// => true
 ```
 
 * * *
@@ -884,17 +840,15 @@ Checks if `value` is the language type of Object. *(e.g. arrays, functions, obje
 *(Boolean)*: Returns `true` if the `value` is an object, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isObject({});
-/ => true
-   *
-   * _.isObject([1, 2, 3]);
-/ => true
-   *
-   * _.isObject(1);
-/ => false
+```js
+_.isObject({});
+// => true
+
+_.isObject([1, 2, 3]);
+// => true
+
+_.isObject(1);
+// => false
 ```
 
 * * *
@@ -918,20 +872,18 @@ Note: This is not the same as native `isNaN`, which will return `true` for `unde
 *(Boolean)*: Returns `true` if the `value` is `NaN`, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isNaN(NaN);
-/ => true
-   *
-   * _.isNaN(new Number(NaN));
-/ => true
-   *
-   * isNaN(undefined);
-/ => true
-   *
-   * _.isNaN(undefined);
-/ => false
+```js
+_.isNaN(NaN);
+// => true
+
+_.isNaN(new Number(NaN));
+// => true
+
+isNaN(undefined);
+// => true
+
+_.isNaN(undefined);
+// => false
 ```
 
 * * *
@@ -953,14 +905,12 @@ Checks if `value` is `null`.
 *(Boolean)*: Returns `true` if the `value` is `null`, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isNull(null);
-/ => true
-   *
-   * _.isNull(undefined);
-/ => false
+```js
+_.isNull(null);
+// => true
+
+_.isNull(undefined);
+// => false
 ```
 
 * * *
@@ -982,11 +932,9 @@ Checks if `value` is a number.
 *(Boolean)*: Returns `true` if the `value` is a number, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isNumber(8.4 * 5);
-/ => true
+```js
+_.isNumber(8.4 * 5);
+// => true
 ```
 
 * * *
@@ -1008,22 +956,20 @@ Checks if a given `value` is an object created by the `Object` constructor.
 *(Boolean)*: Returns `true` if `value` is a plain object, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * function Stooge(name, age) {
-   *   this.name = name;
-   *   this.age = age;
-   * }
-   *
-   * _.isPlainObject(new Stooge('moe', 40));
-/ => false
-   *
-   * _.isPlainObject([1, 2, 3]);
-/ => false
-   *
-   * _.isPlainObject({ 'name': 'moe', 'age': 40 });
-/ => true
+```js
+function Stooge(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+_.isPlainObject(new Stooge('moe', 40));
+// => false
+
+_.isPlainObject([1, 2, 3]);
+// => false
+
+_.isPlainObject({ 'name': 'moe', 'age': 40 });
+// => true
 ```
 
 * * *
@@ -1045,11 +991,9 @@ Checks if `value` is a regular expression.
 *(Boolean)*: Returns `true` if the `value` is a regular expression, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isRegExp(/moe/);
-/ => true
+```js
+_.isRegExp(/moe/);
+// => true
 ```
 
 * * *
@@ -1071,11 +1015,9 @@ Checks if `value` is a string.
 *(Boolean)*: Returns `true` if the `value` is a string, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isString('moe');
-/ => true
+```js
+_.isString('moe');
+// => true
 ```
 
 * * *
@@ -1097,11 +1039,9 @@ Checks if `value` is `undefined`.
 *(Boolean)*: Returns `true` if the `value` is `undefined`, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.isUndefined(void 0);
-/ => true
+```js
+_.isUndefined(void 0);
+// => true
 ```
 
 * * *
@@ -1124,21 +1064,19 @@ Recursively merges own enumerable properties of the source object(s), that don't
 *(Object)*: Returns the destination object.
 
 #### Example
-```.js
-* @example
-   *
-   * var stooges = [
-   *   { 'name': 'moe' },
-   *   { 'name': 'larry' }
-   * ];
-   *
-   * var ages = [
-   *   { 'age': 40 },
-   *   { 'age': 50 }
-   * ];
-   *
-   * _.merge(stooges, ages);
-/ => [{ 'name': 'moe', 'age': 40 }, { 'name': 'larry', 'age': 50 }]
+```js
+var stooges = [
+  { 'name': 'moe' },
+  { 'name': 'larry' }
+];
+
+var ages = [
+  { 'age': 40 },
+  { 'age': 50 }
+];
+
+_.merge(stooges, ages);
+// => [{ 'name': 'moe', 'age': 40 }, { 'name': 'larry', 'age': 50 }]
 ```
 
 * * *
@@ -1163,16 +1101,14 @@ Creates a shallow clone of `object` excluding the specified properties. Property
 *(Object)*: Returns an object without the omitted properties.
 
 #### Example
-```.js
-* @example
-   *
-   * _.omit({ 'name': 'moe', 'age': 40, 'userid': 'moe1' }, 'userid');
-/ => { 'name': 'moe', 'age': 40 }
-   *
-   * _.omit({ 'name': 'moe', '_hint': 'knucklehead', '_seed': '96c4eb' }, function(value, key) {
-   *   return key.charAt(0) == '_';
-   * });
-/ => { 'name': 'moe' }
+```js
+_.omit({ 'name': 'moe', 'age': 40, 'userid': 'moe1' }, 'userid');
+// => { 'name': 'moe', 'age': 40 }
+
+_.omit({ 'name': 'moe', '_hint': 'knucklehead', '_seed': '96c4eb' }, function(value, key) {
+  return key.charAt(0) == '_';
+});
+// => { 'name': 'moe' }
 ```
 
 * * *
@@ -1194,11 +1130,9 @@ Creates a two dimensional array of the given object's key-value pairs, i.e. `[[k
 *(Array)*: Returns new array of key-value pairs.
 
 #### Example
-```.js
-* @example
-   *
-   * _.pairs({ 'moe': 30, 'larry': 40, 'curly': 50 });
-/ => [['moe', 30], ['larry', 40], ['curly', 50]] (order is not guaranteed)
+```js
+_.pairs({ 'moe': 30, 'larry': 40, 'curly': 50 });
+// => [['moe', 30], ['larry', 40], ['curly', 50]] (order is not guaranteed)
 ```
 
 * * *
@@ -1223,16 +1157,14 @@ Creates a shallow clone of `object` composed of the specified properties. Proper
 *(Object)*: Returns an object composed of the picked properties.
 
 #### Example
-```.js
-* @example
-   *
-   * _.pick({ 'name': 'moe', '_userid': 'moe1' }, 'name');
-/ => { 'name': 'moe' }
-   *
-   * _.pick({ 'name': 'moe', '_userid': 'moe1' }, function(value, key) {
-   *   return key.charAt(0) != '_';
-   * });
-/ => { 'name': 'moe' }
+```js
+_.pick({ 'name': 'moe', '_userid': 'moe1' }, 'name');
+// => { 'name': 'moe' }
+
+_.pick({ 'name': 'moe', '_userid': 'moe1' }, function(value, key) {
+  return key.charAt(0) != '_';
+});
+// => { 'name': 'moe' }
 ```
 
 * * *
@@ -1254,11 +1186,9 @@ Creates an array composed of the own enumerable property values of `object`.
 *(Array)*: Returns a new array of property values.
 
 #### Example
-```.js
-* @example
-   *
-   * _.values({ 'one': 1, 'two': 2, 'three': 3 });
-/ => [1, 2, 3]
+```js
+_.values({ 'one': 1, 'two': 2, 'three': 3 });
+// => [1, 2, 3]
 ```
 
 * * *
@@ -1289,14 +1219,12 @@ Creates an array of elements from the specified index(es), or keys, of the `coll
 *(Array)*: Returns a new array of elements corresponding to the  provided indexes.
 
 #### Example
-```.js
-* @example
-   *
-   * _.at(['a', 'b', 'c', 'd', 'e'], [0, 2, 4]);
-/ => ['a', 'c', 'e']
-   *
-   * _.at(['moe', 'larry', 'curly'], 0, 2);
-/ => ['moe', 'curly']
+```js
+_.at(['a', 'b', 'c', 'd', 'e'], [0, 2, 4]);
+// => ['a', 'c', 'e']
+
+_.at(['moe', 'larry', 'curly'], 0, 2);
+// => ['moe', 'curly']
 ```
 
 * * *
@@ -1323,20 +1251,18 @@ Checks if a given `target` element is present in a `collection` using strict equ
 *(Boolean)*: Returns `true` if the `target` element is found, else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.contains([1, 2, 3], 1);
-/ => true
-   *
-   * _.contains([1, 2, 3], 1, 2);
-/ => false
-   *
-   * _.contains({ 'name': 'moe', 'age': 40 }, 'moe');
-/ => true
-   *
-   * _.contains('curly', 'ur');
-/ => true
+```js
+_.contains([1, 2, 3], 1);
+// => true
+
+_.contains([1, 2, 3], 1, 2);
+// => false
+
+_.contains({ 'name': 'moe', 'age': 40 }, 'moe');
+// => true
+
+_.contains('curly', 'ur');
+// => true
 ```
 
 * * *
@@ -1361,17 +1287,15 @@ Creates an object composed of keys returned from running each element of `collec
 *(Object)*: Returns the composed aggregate object.
 
 #### Example
-```.js
-* @example
-   *
-   * _.countBy([4.3, 6.1, 6.4], function(num) { return Math.floor(num); });
-/ => { '4': 1, '6': 2 }
-   *
-   * _.countBy([4.3, 6.1, 6.4], function(num) { return this.floor(num); }, Math);
-/ => { '4': 1, '6': 2 }
-   *
-   * _.countBy(['one', 'two', 'three'], 'length');
-/ => { '3': 2, '5': 1 }
+```js
+_.countBy([4.3, 6.1, 6.4], function(num) { return Math.floor(num); });
+// => { '4': 1, '6': 2 }
+
+_.countBy([4.3, 6.1, 6.4], function(num) { return this.floor(num); }, Math);
+// => { '4': 1, '6': 2 }
+
+_.countBy(['one', 'two', 'three'], 'length');
+// => { '3': 2, '5': 1 }
 ```
 
 * * *
@@ -1398,11 +1322,9 @@ Checks if the `callback` returns a truthy value for **all** elements of a `colle
 *(Boolean)*: Returns `true` if all elements pass the callback check,  else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.every([true, 1, null, 'yes'], Boolean);
-/ => false
+```js
+_.every([true, 1, null, 'yes'], Boolean);
+// => false
 ```
 
 * * *
@@ -1429,11 +1351,9 @@ Examines each element in a `collection`, returning an array of all elements the 
 *(Array)*: Returns a new array of elements that passed the callback check.
 
 #### Example
-```.js
-* @example
-   *
-   * var evens = _.filter([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
-/ => [2, 4, 6]
+```js
+var evens = _.filter([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
+// => [2, 4, 6]
 ```
 
 * * *
@@ -1460,11 +1380,9 @@ Examines each element in a `collection`, returning the first one the `callback` 
 *(Mixed)*: Returns the element that passed the callback check,  else `undefined`.
 
 #### Example
-```.js
-* @example
-   *
-   * var even = _.find([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
-/ => 2
+```js
+var even = _.find([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
+// => 2
 ```
 
 * * *
@@ -1491,14 +1409,12 @@ Iterates over a `collection`, executing the `callback` for each element in the `
 *(Array, Object, String)*: Returns `collection`.
 
 #### Example
-```.js
-* @example
-   *
-   * _([1, 2, 3]).forEach(alert).join(',');
-/ => alerts each number and returns '1,2,3'
-   *
-   * _.forEach({ 'one': 1, 'two': 2, 'three': 3 }, alert);
-/ => alerts each number value (order is not guaranteed)
+```js
+_([1, 2, 3]).forEach(alert).join(',');
+// => alerts each number and returns '1,2,3'
+
+_.forEach({ 'one': 1, 'two': 2, 'three': 3 }, alert);
+// => alerts each number value (order is not guaranteed)
 ```
 
 * * *
@@ -1523,17 +1439,15 @@ Creates an object composed of keys returned from running each element of `collec
 *(Object)*: Returns the composed aggregate object.
 
 #### Example
-```.js
-* @example
-   *
-   * _.groupBy([4.2, 6.1, 6.4], function(num) { return Math.floor(num); });
-/ => { '4': [4.2], '6': [6.1, 6.4] }
-   *
-   * _.groupBy([4.2, 6.1, 6.4], function(num) { return this.floor(num); }, Math);
-/ => { '4': [4.2], '6': [6.1, 6.4] }
-   *
-   * _.groupBy(['one', 'two', 'three'], 'length');
-/ => { '3': ['one', 'two'], '5': ['three'] }
+```js
+_.groupBy([4.2, 6.1, 6.4], function(num) { return Math.floor(num); });
+// => { '4': [4.2], '6': [6.1, 6.4] }
+
+_.groupBy([4.2, 6.1, 6.4], function(num) { return this.floor(num); }, Math);
+// => { '4': [4.2], '6': [6.1, 6.4] }
+
+_.groupBy(['one', 'two', 'three'], 'length');
+// => { '3': ['one', 'two'], '5': ['three'] }
 ```
 
 * * *
@@ -1558,14 +1472,12 @@ Invokes the method named by `methodName` on each element in the `collection`, re
 *(Array)*: Returns a new array of the results of each invoked method.
 
 #### Example
-```.js
-* @example
-   *
-   * _.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
-/ => [[1, 5, 7], [1, 2, 3]]
-   *
-   * _.invoke([123, 456], String.prototype.split, '');
-/ => [['1', '2', '3'], ['4', '5', '6']]
+```js
+_.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
+// => [[1, 5, 7], [1, 2, 3]]
+
+_.invoke([123, 456], String.prototype.split, '');
+// => [['1', '2', '3'], ['4', '5', '6']]
 ```
 
 * * *
@@ -1592,14 +1504,12 @@ Creates an array of values by running each element in the `collection` through a
 *(Array)*: Returns a new array of the results of each `callback` execution.
 
 #### Example
-```.js
-* @example
-   *
-   * _.map([1, 2, 3], function(num) { return num * 3; });
-/ => [3, 6, 9]
-   *
-   * _.map({ 'one': 1, 'two': 2, 'three': 3 }, function(num) { return num * 3; });
-/ => [3, 6, 9] (order is not guaranteed)
+```js
+_.map([1, 2, 3], function(num) { return num * 3; });
+// => [3, 6, 9]
+
+_.map({ 'one': 1, 'two': 2, 'three': 3 }, function(num) { return num * 3; });
+// => [3, 6, 9] (order is not guaranteed)
 ```
 
 * * *
@@ -1623,17 +1533,15 @@ Retrieves the maximum value of an `array`. If `callback` is passed, it will be e
 *(Mixed)*: Returns the maximum value.
 
 #### Example
-```.js
-* @example
-   *
-   * var stooges = [
-   *   { 'name': 'moe', 'age': 40 },
-   *   { 'name': 'larry', 'age': 50 },
-   *   { 'name': 'curly', 'age': 60 }
-   * ];
-   *
-   * _.max(stooges, function(stooge) { return stooge.age; });
-/ => { 'name': 'curly', 'age': 60 };
+```js
+var stooges = [
+  { 'name': 'moe', 'age': 40 },
+  { 'name': 'larry', 'age': 50 },
+  { 'name': 'curly', 'age': 60 }
+];
+
+_.max(stooges, function(stooge) { return stooge.age; });
+// => { 'name': 'curly', 'age': 60 };
 ```
 
 * * *
@@ -1657,11 +1565,9 @@ Retrieves the minimum value of an `array`. If `callback` is passed, it will be e
 *(Mixed)*: Returns the minimum value.
 
 #### Example
-```.js
-* @example
-   *
-   * _.min([10, 5, 100, 2, 1000]);
-/ => 2
+```js
+_.min([10, 5, 100, 2, 1000]);
+// => 2
 ```
 
 * * *
@@ -1684,17 +1590,15 @@ Retrieves the value of a specified property from all elements in the `collection
 *(Array)*: Returns a new array of property values.
 
 #### Example
-```.js
-* @example
-   *
-   * var stooges = [
-   *   { 'name': 'moe', 'age': 40 },
-   *   { 'name': 'larry', 'age': 50 },
-   *   { 'name': 'curly', 'age': 60 }
-   * ];
-   *
-   * _.pluck(stooges, 'name');
-/ => ['moe', 'larry', 'curly']
+```js
+var stooges = [
+  { 'name': 'moe', 'age': 40 },
+  { 'name': 'larry', 'age': 50 },
+  { 'name': 'curly', 'age': 60 }
+];
+
+_.pluck(stooges, 'name');
+// => ['moe', 'larry', 'curly']
 ```
 
 * * *
@@ -1722,11 +1626,9 @@ Reduces a `collection` to a single value. The initial state of the reduction is 
 *(Mixed)*: Returns the accumulated value.
 
 #### Example
-```.js
-* @example
-   *
-   * var sum = _.reduce([1, 2, 3], function(memo, num) { return memo + num; });
-/ => 6
+```js
+var sum = _.reduce([1, 2, 3], function(memo, num) { return memo + num; });
+// => 6
 ```
 
 * * *
@@ -1754,12 +1656,10 @@ The right-associative version of `_.reduce`.
 *(Mixed)*: Returns the accumulated value.
 
 #### Example
-```.js
-* @example
-   *
-   * var list = [[0, 1], [2, 3], [4, 5]];
-   * var flat = _.reduceRight(list, function(a, b) { return a.concat(b); }, []);
-/ => [4, 5, 2, 3, 0, 1]
+```js
+var list = [[0, 1], [2, 3], [4, 5]];
+var flat = _.reduceRight(list, function(a, b) { return a.concat(b); }, []);
+// => [4, 5, 2, 3, 0, 1]
 ```
 
 * * *
@@ -1783,11 +1683,9 @@ The opposite of `_.filter`, this method returns the elements of a `collection` t
 *(Array)*: Returns a new array of elements that did **not** pass the  callback check.
 
 #### Example
-```.js
-* @example
-   *
-   * var odds = _.reject([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
-/ => [1, 3, 5]
+```js
+var odds = _.reject([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
+// => [1, 3, 5]
 ```
 
 * * *
@@ -1809,11 +1707,9 @@ Creates an array of shuffled `array` values, using a version of the Fisher-Yates
 *(Array)*: Returns a new shuffled collection.
 
 #### Example
-```.js
-* @example
-   *
-   * _.shuffle([1, 2, 3, 4, 5, 6]);
-/ => [4, 1, 6, 3, 5, 2]
+```js
+_.shuffle([1, 2, 3, 4, 5, 6]);
+// => [4, 1, 6, 3, 5, 2]
 ```
 
 * * *
@@ -1835,17 +1731,15 @@ Gets the size of the `collection` by returning `collection.length` for arrays an
 *(Number)*: Returns `collection.length` or number of own enumerable properties.
 
 #### Example
-```.js
-* @example
-   *
-   * _.size([1, 2]);
-/ => 2
-   *
-   * _.size({ 'one': 1, 'two': 2, 'three': 3 });
-/ => 3
-   *
-   * _.size('curly');
-/ => 5
+```js
+_.size([1, 2]);
+// => 2
+
+_.size({ 'one': 1, 'two': 2, 'three': 3 });
+// => 3
+
+_.size('curly');
+// => 5
 ```
 
 * * *
@@ -1872,11 +1766,9 @@ Checks if the `callback` returns a truthy value for **any** element of a `collec
 *(Boolean)*: Returns `true` if any element passes the callback check,  else `false`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.some([null, 0, 'yes', false], Boolean);
-/ => true
+```js
+_.some([null, 0, 'yes', false], Boolean);
+// => true
 ```
 
 * * *
@@ -1901,17 +1793,15 @@ Creates an array, stable sorted in ascending order by the results of running eac
 *(Array)*: Returns a new array of sorted elements.
 
 #### Example
-```.js
-* @example
-   *
-   * _.sortBy([1, 2, 3], function(num) { return Math.sin(num); });
-/ => [3, 1, 2]
-   *
-   * _.sortBy([1, 2, 3], function(num) { return this.sin(num); }, Math);
-/ => [3, 1, 2]
-   *
-   * _.sortBy(['larry', 'brendan', 'moe'], 'length');
-/ => ['moe', 'larry', 'brendan']
+```js
+_.sortBy([1, 2, 3], function(num) { return Math.sin(num); });
+// => [3, 1, 2]
+
+_.sortBy([1, 2, 3], function(num) { return this.sin(num); }, Math);
+// => [3, 1, 2]
+
+_.sortBy(['larry', 'brendan', 'moe'], 'length');
+// => ['moe', 'larry', 'brendan']
 ```
 
 * * *
@@ -1933,11 +1823,9 @@ Converts the `collection` to an array.
 *(Array)*: Returns the new converted array.
 
 #### Example
-```.js
-* @example
-   *
-   * (function() { return _.toArray(arguments).slice(1); })(1, 2, 3, 4);
-/ => [2, 3, 4]
+```js
+(function() { return _.toArray(arguments).slice(1); })(1, 2, 3, 4);
+// => [2, 3, 4]
 ```
 
 * * *
@@ -1960,17 +1848,15 @@ Examines each element in a `collection`, returning an array of all elements that
 *(Array)*: Returns a new array of elements that contain the given `properties`.
 
 #### Example
-```.js
-* @example
-   *
-   * var stooges = [
-   *   { 'name': 'moe', 'age': 40 },
-   *   { 'name': 'larry', 'age': 50 },
-   *   { 'name': 'curly', 'age': 60 }
-   * ];
-   *
-   * _.where(stooges, { 'age': 40 });
-/ => [{ 'name': 'moe', 'age': 40 }]
+```js
+var stooges = [
+  { 'name': 'moe', 'age': 40 },
+  { 'name': 'larry', 'age': 50 },
+  { 'name': 'curly', 'age': 60 }
+];
+
+_.where(stooges, { 'age': 40 });
+// => [{ 'name': 'moe', 'age': 40 }]
 ```
 
 * * *
@@ -1999,11 +1885,9 @@ Creates an array with all falsey values of `array` removed. The values `false`, 
 *(Array)*: Returns a new filtered array.
 
 #### Example
-```.js
-* @example
-   *
-   * _.compact([0, 1, false, 2, '', 3]);
-/ => [1, 2, 3]
+```js
+_.compact([0, 1, false, 2, '', 3]);
+// => [1, 2, 3]
 ```
 
 * * *
@@ -2026,11 +1910,9 @@ Creates an array of `array` elements not present in the other arrays using stric
 *(Array)*: Returns a new array of `array` elements not present in the  other arrays.
 
 #### Example
-```.js
-* @example
-   *
-   * _.difference([1, 2, 3, 4, 5], [5, 2, 10]);
-/ => [1, 3, 4]
+```js
+_.difference([1, 2, 3, 4, 5], [5, 2, 10]);
+// => [1, 3, 4]
 ```
 
 * * *
@@ -2056,11 +1938,9 @@ Gets the first element of the `array`. Pass `n` to return the first `n` elements
 *(Mixed)*: Returns the first element, or an array of the first `n`  elements, of `array`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.first([5, 4, 3, 2, 1]);
-/ => 5
+```js
+_.first([5, 4, 3, 2, 1]);
+// => 5
 ```
 
 * * *
@@ -2083,14 +1963,12 @@ Flattens a nested array *(the nesting can be to any depth)*. If `shallow` is tru
 *(Array)*: Returns a new flattened array.
 
 #### Example
-```.js
-* @example
-   *
-   * _.flatten([1, [2], [3, [[4]]]]);
-/ => [1, 2, 3, 4];
-   *
-   * _.flatten([1, [2], [3, [[4]]]], true);
-/ => [1, 2, 3, [[4]]];
+```js
+_.flatten([1, [2], [3, [[4]]]]);
+// => [1, 2, 3, 4];
+
+_.flatten([1, [2], [3, [[4]]]], true);
+// => [1, 2, 3, [[4]]];
 ```
 
 * * *
@@ -2115,17 +1993,15 @@ Gets the index at which the first occurrence of `value` is found using strict eq
 *(Number)*: Returns the index of the matched value or `-1`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.indexOf([1, 2, 3, 1, 2, 3], 2);
-/ => 1
-   *
-   * _.indexOf([1, 2, 3, 1, 2, 3], 2, 3);
-/ => 4
-   *
-   * _.indexOf([1, 1, 2, 2, 3, 3], 2, true);
-/ => 2
+```js
+_.indexOf([1, 2, 3, 1, 2, 3], 2);
+// => 1
+
+_.indexOf([1, 2, 3, 1, 2, 3], 2, 3);
+// => 4
+
+_.indexOf([1, 1, 2, 2, 3, 3], 2, true);
+// => 2
 ```
 
 * * *
@@ -2148,11 +2024,9 @@ Gets all but the last element of `array`. Pass `n` to exclude the last `n` eleme
 *(Array)*: Returns all but the last element, or `n` elements, of `array`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.initial([3, 2, 1]);
-/ => [3, 2]
+```js
+_.initial([3, 2, 1]);
+// => [3, 2]
 ```
 
 * * *
@@ -2174,11 +2048,9 @@ Computes the intersection of all the passed-in arrays using strict equality for 
 *(Array)*: Returns a new array of unique elements that are present  in **all** of the arrays.
 
 #### Example
-```.js
-* @example
-   *
-   * _.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
-/ => [1, 2]
+```js
+_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+// => [1, 2]
 ```
 
 * * *
@@ -2201,11 +2073,9 @@ Gets the last element of the `array`. Pass `n` to return the last `n` elements o
 *(Mixed)*: Returns the last element, or an array of the last `n`  elements, of `array`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.last([3, 2, 1]);
-/ => 1
+```js
+_.last([3, 2, 1]);
+// => 1
 ```
 
 * * *
@@ -2229,14 +2099,12 @@ Gets the index at which the last occurrence of `value` is found using strict equ
 *(Number)*: Returns the index of the matched value or `-1`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
-/ => 4
-   *
-   * _.lastIndexOf([1, 2, 3, 1, 2, 3], 2, 3);
-/ => 1
+```js
+_.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
+// => 4
+
+_.lastIndexOf([1, 2, 3, 1, 2, 3], 2, 3);
+// => 1
 ```
 
 * * *
@@ -2259,11 +2127,9 @@ Creates an object composed from arrays of `keys` and `values`. Pass either a sin
 *(Object)*: Returns an object composed of the given keys and  corresponding values.
 
 #### Example
-```.js
-* @example
-   *
-   * _.object(['moe', 'larry', 'curly'], [30, 40, 50]);
-/ => { 'moe': 30, 'larry': 40, 'curly': 50 }
+```js
+_.object(['moe', 'larry', 'curly'], [30, 40, 50]);
+// => { 'moe': 30, 'larry': 40, 'curly': 50 }
 ```
 
 * * *
@@ -2287,23 +2153,21 @@ Creates an array of numbers *(positive and/or negative)* progressing from `start
 *(Array)*: Returns a new range array.
 
 #### Example
-```.js
-* @example
-   *
-   * _.range(10);
-/ => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-   *
-   * _.range(1, 11);
-/ => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-   *
-   * _.range(0, 30, 5);
-/ => [0, 5, 10, 15, 20, 25]
-   *
-   * _.range(0, -10, -1);
-/ => [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
-   *
-   * _.range(0);
-/ => []
+```js
+_.range(10);
+// => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+_.range(1, 11);
+// => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+_.range(0, 30, 5);
+// => [0, 5, 10, 15, 20, 25]
+
+_.range(0, -10, -1);
+// => [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+
+_.range(0);
+// => []
 ```
 
 * * *
@@ -2329,11 +2193,9 @@ The opposite of `_.initial`, this method gets all but the first value of `array`
 *(Array)*: Returns all but the first element, or `n` elements, of `array`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.rest([3, 2, 1]);
-/ => [2, 1]
+```js
+_.rest([3, 2, 1]);
+// => [2, 1]
 ```
 
 * * *
@@ -2359,28 +2221,26 @@ Uses a binary search to determine the smallest index at which the `value` should
 *(Number)*: Returns the index at which the value should be inserted  into `array`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.sortedIndex([20, 30, 50], 40);
-/ => 2
-   *
-   * _.sortedIndex([{ 'x': 20 }, { 'x': 30 }, { 'x': 50 }], { 'x': 40 }, 'x');
-/ => 2
-   *
-   * var dict = {
-   *   'wordToNumber': { 'twenty': 20, 'thirty': 30, 'fourty': 40, 'fifty': 50 }
-   * };
-   *
-   * _.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
-   *   return dict.wordToNumber[word];
-   * });
-/ => 2
-   *
-   * _.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
-   *   return this.wordToNumber[word];
-   * }, dict);
-/ => 2
+```js
+_.sortedIndex([20, 30, 50], 40);
+// => 2
+
+_.sortedIndex([{ 'x': 20 }, { 'x': 30 }, { 'x': 50 }], { 'x': 40 }, 'x');
+// => 2
+
+var dict = {
+  'wordToNumber': { 'twenty': 20, 'thirty': 30, 'fourty': 40, 'fifty': 50 }
+};
+
+_.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
+  return dict.wordToNumber[word];
+});
+// => 2
+
+_.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
+  return this.wordToNumber[word];
+}, dict);
+// => 2
 ```
 
 * * *
@@ -2402,11 +2262,9 @@ Computes the union of the passed-in arrays using strict equality for comparisons
 *(Array)*: Returns a new array of unique values, in order, that are  present in one or more of the arrays.
 
 #### Example
-```.js
-* @example
-   *
-   * _.union([1, 2, 3], [101, 2, 1, 10], [2, 1]);
-/ => [1, 2, 3, 101, 10]
+```js
+_.union([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+// => [1, 2, 3, 101, 10]
 ```
 
 * * *
@@ -2434,20 +2292,18 @@ Creates a duplicate-value-free version of the `array` using strict equality for 
 *(Array)*: Returns a duplicate-value-free array.
 
 #### Example
-```.js
-* @example
-   *
-   * _.uniq([1, 2, 1, 3, 1]);
-/ => [1, 2, 3]
-   *
-   * _.uniq([1, 1, 2, 2, 3], true);
-/ => [1, 2, 3]
-   *
-   * _.uniq([1, 2, 1.5, 3, 2.5], function(num) { return Math.floor(num); });
-/ => [1, 2, 3]
-   *
-   * _.uniq([1, 2, 1.5, 3, 2.5], function(num) { return this.floor(num); }, Math);
-/ => [1, 2, 3]
+```js
+_.uniq([1, 2, 1, 3, 1]);
+// => [1, 2, 3]
+
+_.uniq([1, 1, 2, 2, 3], true);
+// => [1, 2, 3]
+
+_.uniq([1, 2, 1.5, 3, 2.5], function(num) { return Math.floor(num); });
+// => [1, 2, 3]
+
+_.uniq([1, 2, 1.5, 3, 2.5], function(num) { return this.floor(num); }, Math);
+// => [1, 2, 3]
 ```
 
 * * *
@@ -2470,11 +2326,9 @@ Creates an array with all occurrences of the passed values removed using strict 
 *(Array)*: Returns a new filtered array.
 
 #### Example
-```.js
-* @example
-   *
-   * _.without([1, 2, 1, 0, 3, 1, 4], 0, 1);
-/ => [2, 3, 4]
+```js
+_.without([1, 2, 1, 0, 3, 1, 4], 0, 1);
+// => [2, 3, 4]
 ```
 
 * * *
@@ -2496,11 +2350,9 @@ Groups the elements of each array at their corresponding indexes. Useful for sep
 *(Array)*: Returns a new array of grouped elements.
 
 #### Example
-```.js
-* @example
-   *
-   * _.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false]);
-/ => [['moe', 30, true], ['larry', 40, false], ['curly', 50, false]]
+```js
+_.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false]);
+// => [['moe', 30, true], ['larry', 40, false], ['curly', 50, false]]
 ```
 
 * * *
@@ -2531,14 +2383,12 @@ Creates a function that is restricted to executing `func` only after it is calle
 *(Function)*: Returns the new restricted function.
 
 #### Example
-```.js
-* @example
-   *
-   * var renderNotes = _.after(notes.length, render);
-   * _.forEach(notes, function(note) {
-   *   note.asyncSave({ 'success': renderNotes });
-   * });
-/ `renderNotes` is run once, after all notes have saved
+```js
+var renderNotes = _.after(notes.length, render);
+_.forEach(notes, function(note) {
+  note.asyncSave({ 'success': renderNotes });
+});
+// `renderNotes` is run once, after all notes have saved
 ```
 
 * * *
@@ -2562,16 +2412,14 @@ Creates a function that, when called, invokes `func` with the `this` binding of 
 *(Function)*: Returns the new bound function.
 
 #### Example
-```.js
-* @example
-   *
-   * var func = function(greeting) {
-   *   return greeting + ' ' + this.name;
-   * };
-   *
-   * func = _.bind(func, { 'name': 'moe' }, 'hi');
-   * func();
-/ => 'hi moe'
+```js
+var func = function(greeting) {
+  return greeting + ' ' + this.name;
+};
+
+func = _.bind(func, { 'name': 'moe' }, 'hi');
+func();
+// => 'hi moe'
 ```
 
 * * *
@@ -2594,17 +2442,15 @@ Binds methods on `object` to `object`, overwriting the existing method. If no me
 *(Object)*: Returns `object`.
 
 #### Example
-```.js
-* @example
-   *
-   * var buttonView = {
-   *  'label': 'lodash',
-   *  'onClick': function() { alert('clicked: ' + this.label); }
-   * };
-   *
-   * _.bindAll(buttonView);
-   * jQuery('#lodash_button').on('click', buttonView.onClick);
-/ => When the button is clicked, `this.label` will have the correct value
+```js
+var buttonView = {
+ 'label': 'lodash',
+ 'onClick': function() { alert('clicked: ' + this.label); }
+};
+
+_.bindAll(buttonView);
+jQuery('#lodash_button').on('click', buttonView.onClick);
+// => When the button is clicked, `this.label` will have the correct value
 ```
 
 * * *
@@ -2628,26 +2474,24 @@ Creates a function that, when called, invokes the method at `object[key]` and pr
 *(Function)*: Returns the new bound function.
 
 #### Example
-```.js
-* @example
-   *
-   * var object = {
-   *   'name': 'moe',
-   *   'greet': function(greeting) {
-   *     return greeting + ' ' + this.name;
-   *   }
-   * };
-   *
-   * var func = _.bindKey(object, 'greet', 'hi');
-   * func();
-/ => 'hi moe'
-   *
-   * object.greet = function(greeting) {
-   *   return greeting + ', ' + this.name + '!';
-   * };
-   *
-   * func();
-/ => 'hi, moe!'
+```js
+var object = {
+  'name': 'moe',
+  'greet': function(greeting) {
+    return greeting + ' ' + this.name;
+  }
+};
+
+var func = _.bindKey(object, 'greet', 'hi');
+func();
+// => 'hi moe'
+
+object.greet = function(greeting) {
+  return greeting + ', ' + this.name + '!';
+};
+
+func();
+// => 'hi, moe!'
 ```
 
 * * *
@@ -2669,14 +2513,12 @@ Creates a function that is the composition of the passed functions, where each f
 *(Function)*: Returns the new composed function.
 
 #### Example
-```.js
-* @example
-   *
-   * var greet = function(name) { return 'hi: ' + name; };
-   * var exclaim = function(statement) { return statement + '!'; };
-   * var welcome = _.compose(exclaim, greet);
-   * welcome('moe');
-/ => 'hi: moe!'
+```js
+var greet = function(name) { return 'hi: ' + name; };
+var exclaim = function(statement) { return statement + '!'; };
+var welcome = _.compose(exclaim, greet);
+welcome('moe');
+// => 'hi: moe!'
 ```
 
 * * *
@@ -2701,11 +2543,9 @@ Creates a function that will delay the execution of `func` until after `wait` mi
 *(Function)*: Returns the new debounced function.
 
 #### Example
-```.js
-* @example
-   *
-   * var lazyLayout = _.debounce(calculateLayout, 300);
-   * jQuery(window).on('resize', lazyLayout);
+```js
+var lazyLayout = _.debounce(calculateLayout, 300);
+jQuery(window).on('resize', lazyLayout);
 ```
 
 * * *
@@ -2729,12 +2569,10 @@ Executes the `func` function after `wait` milliseconds. Additional arguments wil
 *(Number)*: Returns the `setTimeout` timeout id.
 
 #### Example
-```.js
-* @example
-   *
-   * var log = _.bind(console.log, console);
-   * _.delay(log, 1000, 'logged later');
-/ => 'logged later' (Appears after one second.)
+```js
+var log = _.bind(console.log, console);
+_.delay(log, 1000, 'logged later');
+// => 'logged later' (Appears after one second.)
 ```
 
 * * *
@@ -2757,11 +2595,9 @@ Defers executing the `func` function until the current call stack has cleared. A
 *(Number)*: Returns the `setTimeout` timeout id.
 
 #### Example
-```.js
-* @example
-   *
-   * _.defer(function() { alert('deferred'); });
-/ returns from the function before `alert` is called
+```js
+_.defer(function() { alert('deferred'); });
+// returns from the function before `alert` is called
 ```
 
 * * *
@@ -2784,12 +2620,10 @@ Creates a function that memoizes the result of `func`. If `resolver` is passed, 
 *(Function)*: Returns the new memoizing function.
 
 #### Example
-```.js
-* @example
-   *
-   * var fibonacci = _.memoize(function(n) {
-   *   return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
-   * });
+```js
+var fibonacci = _.memoize(function(n) {
+  return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+});
 ```
 
 * * *
@@ -2811,13 +2645,11 @@ Creates a function that is restricted to execute `func` once. Repeat calls to th
 *(Function)*: Returns the new restricted function.
 
 #### Example
-```.js
-* @example
-   *
-   * var initialize = _.once(createApplication);
-   * initialize();
-   * initialize();
-/ Application is only created once.
+```js
+var initialize = _.once(createApplication);
+initialize();
+initialize();
+// Application is only created once.
 ```
 
 * * *
@@ -2840,13 +2672,11 @@ Creates a function that, when called, invokes `func` with any additional `partia
 *(Function)*: Returns the new partially applied function.
 
 #### Example
-```.js
-* @example
-   *
-   * var greet = function(greeting, name) { return greeting + ': ' + name; };
-   * var hi = _.partial(greet, 'hi');
-   * hi('moe');
-/ => 'hi: moe'
+```js
+var greet = function(greeting, name) { return greeting + ': ' + name; };
+var hi = _.partial(greet, 'hi');
+hi('moe');
+// => 'hi: moe'
 ```
 
 * * *
@@ -2869,11 +2699,9 @@ Creates a function that, when executed, will only call the `func` function at mo
 *(Function)*: Returns the new throttled function.
 
 #### Example
-```.js
-* @example
-   *
-   * var throttled = _.throttle(updatePosition, 100);
-   * jQuery(window).on('scroll', throttled);
+```js
+var throttled = _.throttle(updatePosition, 100);
+jQuery(window).on('scroll', throttled);
 ```
 
 * * *
@@ -2896,15 +2724,13 @@ Creates a function that passes `value` to the `wrapper` function as its first ar
 *(Function)*: Returns the new function.
 
 #### Example
-```.js
-* @example
-   *
-   * var hello = function(name) { return 'hello ' + name; };
-   * hello = _.wrap(hello, function(func) {
-   *   return 'before, ' + func('moe') + ', after';
-   * });
-   * hello();
-/ => 'before, hello moe, after'
+```js
+var hello = function(name) { return 'hello ' + name; };
+hello = _.wrap(hello, function(func) {
+  return 'before, ' + func('moe') + ', after';
+});
+hello();
+// => 'before, hello moe, after'
 ```
 
 * * *
@@ -2933,11 +2759,9 @@ Converts the characters `&`, `<`, `>`, `"`, and `'` in `string` to their corresp
 *(String)*: Returns the escaped string.
 
 #### Example
-```.js
-* @example
-   *
-   * _.escape('Moe, Larry & Curly');
-/ => 'Moe, Larry &amp; Curly'
+```js
+_.escape('Moe, Larry & Curly');
+// => 'Moe, Larry &amp; Curly'
 ```
 
 * * *
@@ -2959,12 +2783,10 @@ This function returns the first argument passed to it.
 *(Mixed)*: Returns `value`.
 
 #### Example
-```.js
-* @example
-   *
-   * var moe = { 'name': 'moe' };
-   * moe === _.identity(moe);
-/ => true
+```js
+var moe = { 'name': 'moe' };
+moe === _.identity(moe);
+// => true
 ```
 
 * * *
@@ -2983,20 +2805,18 @@ Adds functions properties of `object` to the `lodash` function and chainable wra
 1. `object` *(Object)*: The object of function properties to add to `lodash`.
 
 #### Example
-```.js
-* @example
-   *
-   * _.mixin({
-   *   'capitalize': function(string) {
-   *     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-   *   }
-   * });
-   *
-   * _.capitalize('larry');
-/ => 'Larry'
-   *
-   * _('curly').capitalize();
-/ => 'Curly'
+```js
+_.mixin({
+  'capitalize': function(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  }
+});
+
+_.capitalize('larry');
+// => 'Larry'
+
+_('curly').capitalize();
+// => 'Curly'
 ```
 
 * * *
@@ -3015,10 +2835,8 @@ Reverts the '_' variable to its previous value and returns a reference to the `l
 *(Function)*: Returns the `lodash` function.
 
 #### Example
-```.js
-* @example
-   *
-   * var lodash = _.noConflict();
+```js
+var lodash = _.noConflict();
 ```
 
 * * *
@@ -3041,14 +2859,12 @@ Produces a random number between `min` and `max` *(inclusive)*. If only one argu
 *(Number)*: Returns a random number.
 
 #### Example
-```.js
-* @example
-   *
-   * _.random(0, 5);
-/ => a number between 1 and 5
-   *
-   * _.random(5);
-/ => also a number between 1 and 5
+```js
+_.random(0, 5);
+// => a number between 1 and 5
+
+_.random(5);
+// => also a number between 1 and 5
 ```
 
 * * *
@@ -3071,21 +2887,19 @@ Resolves the value of `property` on `object`. If `property` is a function it wil
 *(Mixed)*: Returns the resolved value.
 
 #### Example
-```.js
-* @example
-   *
-   * var object = {
-   *   'cheese': 'crumpets',
-   *   'stuff': function() {
-   *     return 'nonsense';
-   *   }
-   * };
-   *
-   * _.result(object, 'cheese');
-/ => 'crumpets'
-   *
-   * _.result(object, 'stuff');
-/ => 'nonsense'
+```js
+var object = {
+  'cheese': 'crumpets',
+  'stuff': function() {
+    return 'nonsense';
+  }
+};
+
+_.result(object, 'cheese');
+// => 'crumpets'
+
+_.result(object, 'stuff');
+// => 'nonsense'
 ```
 
 * * *
@@ -3119,59 +2933,57 @@ Note: Lo-Dash may be used in Chrome extensions by either creating a `lodash csp`
 *(Function, String)*: Returns a compiled function when no `data` object  is given, else it returns the interpolated text.
 
 #### Example
-```.js
-* @example
-   *
-/ using a compiled template
-   * var compiled = _.template('hello <%= name %>');
-   * compiled({ 'name': 'moe' });
-/ => 'hello moe'
-   *
-   * var list = '<% _.forEach(people, function(name) { %><li><%= name %></li><% }); %>';
-   * _.template(list, { 'people': ['moe', 'larry', 'curly'] });
-/ => '<li>moe</li><li>larry</li><li>curly</li>'
-   *
-/ using the "escape" delimiter to escape HTML in data property values
-   * _.template('<b><%- value %></b>', { 'value': '<script>' });
-/ => '<b>&lt;script&gt;</b>'
-   *
-/ using the ES6 delimiter as an alternative to the default "interpolate" delimiter
-   * _.template('hello ${ name }', { 'name': 'curly' });
-/ => 'hello curly'
-   *
-/ using the internal `print` function in "evaluate" delimiters
-   * _.template('<% print("hello " + epithet); %>!', { 'epithet': 'stooge' });
-/ => 'hello stooge!'
-   *
-/ using custom template delimiters
-   * _.templateSettings = {
-   *   'interpolate': /{{([\s\S]+?)}}/g
-   * };
-   *
-   * _.template('hello {{ name }}!', { 'name': 'mustache' });
-/ => 'hello mustache!'
-   *
-/ using the `sourceURL` option to specify a custom sourceURL for the template
-   * var compiled = _.template('hello <%= name %>', null, { 'sourceURL': '/basic/greeting.jst' });
-   * compiled(data);
-/ => find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector
-   *
-/ using the `variable` option to ensure a with-statement isn't used in the compiled template
-   * var compiled = _.template('hello <%= data.name %>!', null, { 'variable': 'data' });
-   * compiled.source;
-/ => function(data) {
-   *   var __t, __p = '', __e = _.escape;
-   *   __p += 'hello ' + ((__t = ( data.name )) == null ? '' : __t) + '!';
-   *   return __p;
-   * }
-   *
-/ using the `source` property to inline compiled templates for meaningful
-/ line numbers in error messages and a stack trace
-   * fs.writeFileSync(path.join(cwd, 'jst.js'), '\
-   *   var JST = {\
-   *     "main": ' + _.template(mainText).source + '\
-   *   };\
-   * ');
+```js
+// using a compiled template
+var compiled = _.template('hello <%= name %>');
+compiled({ 'name': 'moe' });
+// => 'hello moe'
+
+var list = '<% _.forEach(people, function(name) { %><li><%= name %></li><% }); %>';
+_.template(list, { 'people': ['moe', 'larry', 'curly'] });
+// => '<li>moe</li><li>larry</li><li>curly</li>'
+
+// using the "escape" delimiter to escape HTML in data property values
+_.template('<b><%- value %></b>', { 'value': '<script>' });
+// => '<b>&lt;script&gt;</b>'
+
+// using the ES6 delimiter as an alternative to the default "interpolate" delimiter
+_.template('hello ${ name }', { 'name': 'curly' });
+// => 'hello curly'
+
+// using the internal `print` function in "evaluate" delimiters
+_.template('<% print("hello " + epithet); %>!', { 'epithet': 'stooge' });
+// => 'hello stooge!'
+
+// using custom template delimiters
+_.templateSettings = {
+  'interpolate': /{{([\s\S]+?)}}/g
+};
+
+_.template('hello {{ name }}!', { 'name': 'mustache' });
+// => 'hello mustache!'
+
+// using the `sourceURL` option to specify a custom sourceURL for the template
+var compiled = _.template('hello <%= name %>', null, { 'sourceURL': '/basic/greeting.jst' });
+compiled(data);
+// => find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector
+
+// using the `variable` option to ensure a with-statement isn't used in the compiled template
+var compiled = _.template('hello <%= data.name %>!', null, { 'variable': 'data' });
+compiled.source;
+// => function(data) {
+  var __t, __p = '', __e = _.escape;
+  __p += 'hello ' + ((__t = ( data.name )) == null ? '' : __t) + '!';
+  return __p;
+}
+
+// using the `source` property to inline compiled templates for meaningful
+// line numbers in error messages and a stack trace
+fs.writeFileSync(path.join(cwd, 'jst.js'), '\
+  var JST = {\
+    "main": ' + _.template(mainText).source + '\
+  };\
+');
 ```
 
 * * *
@@ -3195,17 +3007,15 @@ Executes the `callback` function `n` times, returning an array of the results of
 *(Array)*: Returns a new array of the results of each `callback` execution.
 
 #### Example
-```.js
-* @example
-   *
-   * var diceRolls = _.times(3, _.partial(_.random, 1, 6));
-/ => [3, 6, 4]
-   *
-   * _.times(3, function(n) { mage.castSpell(n); });
-/ => calls `mage.castSpell(n)` three times, passing `n` of `0`, `1`, and `2` respectively
-   *
-   * _.times(3, function(n) { this.cast(n); }, mage);
-/ => also calls `mage.castSpell(n)` three times
+```js
+var diceRolls = _.times(3, _.partial(_.random, 1, 6));
+// => [3, 6, 4]
+
+_.times(3, function(n) { mage.castSpell(n); });
+// => calls `mage.castSpell(n)` three times, passing `n` of `0`, `1`, and `2` respectively
+
+_.times(3, function(n) { this.cast(n); }, mage);
+// => also calls `mage.castSpell(n)` three times
 ```
 
 * * *
@@ -3227,11 +3037,9 @@ The opposite of `_.escape`, this method converts the HTML entities `&amp;`, `&lt
 *(String)*: Returns the unescaped string.
 
 #### Example
-```.js
-* @example
-   *
-   * _.unescape('Moe, Larry &amp; Curly');
-/ => 'Moe, Larry & Curly'
+```js
+_.unescape('Moe, Larry &amp; Curly');
+// => 'Moe, Larry & Curly'
 ```
 
 * * *
@@ -3253,14 +3061,12 @@ Generates a unique ID. If `prefix` is passed, the ID will be appended to it.
 *(String)*: Returns the unique ID.
 
 #### Example
-```.js
-* @example
-   *
-   * _.uniqueId('contact_');
-/ => 'contact_104'
-   *
-   * _.uniqueId();
-/ => '105'
+```js
+_.uniqueId('contact_');
+// => 'contact_104'
+
+_.uniqueId();
+// => '105'
 ```
 
 * * *

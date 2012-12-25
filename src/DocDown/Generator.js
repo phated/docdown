@@ -81,7 +81,7 @@ function Generator(source, options) {
     options.path = options.source;
   }
   if (options.path) {
-    var ext = path.extname(options.path);
+    var ext = path.extname(options.path).substr(1);
     options.source = fs.readFileSync(options.path, 'utf-8');
 
     if (!options.lang && ext) {
