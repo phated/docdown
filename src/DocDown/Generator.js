@@ -465,8 +465,8 @@ Generator.prototype.generate = function() {
   });
 
   // sort categories
-  // TODO: sort this shit
-  // ksort($categories);
+  var categoryKeys = Object.keys(categories);
+  categoryKeys.sort();
 
   ['Methods', 'Properties'].forEach(function(category){
     if(categories[category]){
@@ -483,7 +483,8 @@ Generator.prototype.generate = function() {
 
   // compile toc by categories
   if (byCategory) {
-    _.forEach(categories, function(entries, category){
+    _.forEach(categoryKeys, function(category){
+      var entries = categories[category];
       if(compiling){
         result.push(closeTag);
       } else {

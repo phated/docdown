@@ -5,12 +5,100 @@
 
 <!-- div -->
 
-## <a id="Chaining"></a>`Chaining`
+## <a id="Arrays"></a>`Arrays`
+* [`_.compact`](#_compactarray)
+* [`_.difference`](#_differencearray--array1-array2-)
+* [`_.first`](#_firstarray--n)
+* [`_.head`](#_firstarray--n)
+* [`_.take`](#_firstarray--n)
+* [`_.flatten`](#_flattenarray-shallow)
+* [`_.indexOf`](#_indexofarray-value--fromindex0)
+* [`_.initial`](#_initialarray--n1)
+* [`_.intersection`](#_intersectionarray1-array2-)
+* [`_.last`](#_lastarray--n)
+* [`_.lastIndexOf`](#_lastindexofarray-value--fromindexarraylength-1)
+* [`_.object`](#_objectkeys--values)
+* [`_.range`](#_rangestart0-end--step1)
+* [`_.rest`](#_restarray--n1)
+* [`_.drop`](#_restarray--n1)
+* [`_.tail`](#_restarray--n1)
+* [`_.sortedIndex`](#_sortedindexarray-value--callbackidentityproperty-thisarg)
+* [`_.union`](#_unionarray1-array2-)
+* [`_.uniq`](#_uniqarray--issortedfalse-callbackidentity-thisarg)
+* [`_.unique`](#_uniqarray--issortedfalse-callbackidentity-thisarg)
+* [`_.without`](#_withoutarray--value1-value2-)
+* [`_.zip`](#_ziparray1-array2-)
+
+<!-- /div -->
+
+
+<!-- div -->
+
+## `Chaining`
 * [`_`](#_value)
 * [`_.tap`](#_tapvalue-interceptor)
 * [`_.toString`](#_tostring)
 * [`_.valueOf`](#_valueof)
 * [`_.value`](#_valueof)
+
+<!-- /div -->
+
+
+<!-- div -->
+
+## `Collections`
+* [`_.at`](#_atcollection--index1-index2-)
+* [`_.contains`](#_containscollection-target--fromindex0)
+* [`_.include`](#_containscollection-target--fromindex0)
+* [`_.countBy`](#_countbycollection-callbackproperty--thisarg)
+* [`_.every`](#_everycollection--callbackidentity-thisarg)
+* [`_.all`](#_everycollection--callbackidentity-thisarg)
+* [`_.filter`](#_filtercollection--callbackidentity-thisarg)
+* [`_.select`](#_filtercollection--callbackidentity-thisarg)
+* [`_.find`](#_findcollection--callbackidentity-thisarg)
+* [`_.detect`](#_findcollection--callbackidentity-thisarg)
+* [`_.forEach`](#_foreachcollection--callbackidentity-thisarg)
+* [`_.each`](#_foreachcollection--callbackidentity-thisarg)
+* [`_.groupBy`](#_groupbycollection-callbackproperty--thisarg)
+* [`_.invoke`](#_invokecollection-methodname--arg1-arg2-)
+* [`_.map`](#_mapcollection--callbackidentity-thisarg)
+* [`_.collect`](#_mapcollection--callbackidentity-thisarg)
+* [`_.max`](#_maxcollection--callback-thisarg)
+* [`_.min`](#_mincollection--callback-thisarg)
+* [`_.pluck`](#_pluckcollection-property)
+* [`_.reduce`](#_reducecollection--callbackidentity-accumulator-thisarg)
+* [`_.foldl`](#_reducecollection--callbackidentity-accumulator-thisarg)
+* [`_.inject`](#_reducecollection--callbackidentity-accumulator-thisarg)
+* [`_.reduceRight`](#_reducerightcollection--callbackidentity-accumulator-thisarg)
+* [`_.foldr`](#_reducerightcollection--callbackidentity-accumulator-thisarg)
+* [`_.reject`](#_rejectcollection--callbackidentity-thisarg)
+* [`_.shuffle`](#_shufflecollection)
+* [`_.size`](#_sizecollection)
+* [`_.some`](#_somecollection--callbackidentity-thisarg)
+* [`_.any`](#_somecollection--callbackidentity-thisarg)
+* [`_.sortBy`](#_sortbycollection-callbackproperty--thisarg)
+* [`_.toArray`](#_toarraycollection)
+* [`_.where`](#_wherecollection-properties)
+
+<!-- /div -->
+
+
+<!-- div -->
+
+## `Functions`
+* [`_.after`](#_aftern-func)
+* [`_.bind`](#_bindfunc--thisarg-arg1-arg2-)
+* [`_.bindAll`](#_bindallobject--methodname1-methodname2-)
+* [`_.bindKey`](#_bindkeyobject-key--arg1-arg2-)
+* [`_.compose`](#_composefunc1-func2-)
+* [`_.debounce`](#_debouncefunc-wait-immediate)
+* [`_.delay`](#_delayfunc-wait--arg1-arg2-)
+* [`_.defer`](#_deferfunc--arg1-arg2-)
+* [`_.memoize`](#_memoizefunc--resolver)
+* [`_.once`](#_oncefunc)
+* [`_.partial`](#_partialfunc--arg1-arg2-)
+* [`_.throttle`](#_throttlefunc-wait)
+* [`_.wrap`](#_wrapvalue-wrapper)
 
 <!-- /div -->
 
@@ -58,88 +146,13 @@
 
 <!-- div -->
 
-## `Collections`
-* [`_.at`](#_atcollection--index1-index2-)
-* [`_.contains`](#_containscollection-target--fromindex0)
-* [`_.include`](#_containscollection-target--fromindex0)
-* [`_.countBy`](#_countbycollection-callbackproperty--thisarg)
-* [`_.every`](#_everycollection--callbackidentity-thisarg)
-* [`_.all`](#_everycollection--callbackidentity-thisarg)
-* [`_.filter`](#_filtercollection--callbackidentity-thisarg)
-* [`_.select`](#_filtercollection--callbackidentity-thisarg)
-* [`_.find`](#_findcollection--callbackidentity-thisarg)
-* [`_.detect`](#_findcollection--callbackidentity-thisarg)
-* [`_.forEach`](#_foreachcollection--callbackidentity-thisarg)
-* [`_.each`](#_foreachcollection--callbackidentity-thisarg)
-* [`_.groupBy`](#_groupbycollection-callbackproperty--thisarg)
-* [`_.invoke`](#_invokecollection-methodname--arg1-arg2-)
-* [`_.map`](#_mapcollection--callbackidentity-thisarg)
-* [`_.collect`](#_mapcollection--callbackidentity-thisarg)
-* [`_.max`](#_maxcollection--callback-thisarg)
-* [`_.min`](#_mincollection--callback-thisarg)
-* [`_.pluck`](#_pluckcollection-property)
-* [`_.reduce`](#_reducecollection--callbackidentity-accumulator-thisarg)
-* [`_.foldl`](#_reducecollection--callbackidentity-accumulator-thisarg)
-* [`_.inject`](#_reducecollection--callbackidentity-accumulator-thisarg)
-* [`_.reduceRight`](#_reducerightcollection--callbackidentity-accumulator-thisarg)
-* [`_.foldr`](#_reducerightcollection--callbackidentity-accumulator-thisarg)
-* [`_.reject`](#_rejectcollection--callbackidentity-thisarg)
-* [`_.shuffle`](#_shufflecollection)
-* [`_.size`](#_sizecollection)
-* [`_.some`](#_somecollection--callbackidentity-thisarg)
-* [`_.any`](#_somecollection--callbackidentity-thisarg)
-* [`_.sortBy`](#_sortbycollection-callbackproperty--thisarg)
-* [`_.toArray`](#_toarraycollection)
-* [`_.where`](#_wherecollection-properties)
-
-<!-- /div -->
-
-
-<!-- div -->
-
-## `Arrays`
-* [`_.compact`](#_compactarray)
-* [`_.difference`](#_differencearray--array1-array2-)
-* [`_.first`](#_firstarray--n)
-* [`_.head`](#_firstarray--n)
-* [`_.take`](#_firstarray--n)
-* [`_.flatten`](#_flattenarray-shallow)
-* [`_.indexOf`](#_indexofarray-value--fromindex0)
-* [`_.initial`](#_initialarray--n1)
-* [`_.intersection`](#_intersectionarray1-array2-)
-* [`_.last`](#_lastarray--n)
-* [`_.lastIndexOf`](#_lastindexofarray-value--fromindexarraylength-1)
-* [`_.object`](#_objectkeys--values)
-* [`_.range`](#_rangestart0-end--step1)
-* [`_.rest`](#_restarray--n1)
-* [`_.drop`](#_restarray--n1)
-* [`_.tail`](#_restarray--n1)
-* [`_.sortedIndex`](#_sortedindexarray-value--callbackidentityproperty-thisarg)
-* [`_.union`](#_unionarray1-array2-)
-* [`_.uniq`](#_uniqarray--issortedfalse-callbackidentity-thisarg)
-* [`_.unique`](#_uniqarray--issortedfalse-callbackidentity-thisarg)
-* [`_.without`](#_withoutarray--value1-value2-)
-* [`_.zip`](#_ziparray1-array2-)
-
-<!-- /div -->
-
-
-<!-- div -->
-
-## `Functions`
-* [`_.after`](#_aftern-func)
-* [`_.bind`](#_bindfunc--thisarg-arg1-arg2-)
-* [`_.bindAll`](#_bindallobject--methodname1-methodname2-)
-* [`_.bindKey`](#_bindkeyobject-key--arg1-arg2-)
-* [`_.compose`](#_composefunc1-func2-)
-* [`_.debounce`](#_debouncefunc-wait-immediate)
-* [`_.delay`](#_delayfunc-wait--arg1-arg2-)
-* [`_.defer`](#_deferfunc--arg1-arg2-)
-* [`_.memoize`](#_memoizefunc--resolver)
-* [`_.once`](#_oncefunc)
-* [`_.partial`](#_partialfunc--arg1-arg2-)
-* [`_.throttle`](#_throttlefunc-wait)
-* [`_.wrap`](#_wrapvalue-wrapper)
+## `Properties`
+* [`_.VERSION`](#_version)
+* [`_.templateSettings`](#_templatesettings)
+* [`_.templateSettings.escape`](#_templatesettingsescape)
+* [`_.templateSettings.evaluate`](#_templatesettingsevaluate)
+* [`_.templateSettings.interpolate`](#_templatesettingsinterpolate)
+* [`_.templateSettings.variable`](#_templatesettingsvariable)
 
 <!-- /div -->
 
@@ -157,19 +170,6 @@
 * [`_.times`](#_timesn-callback--thisarg)
 * [`_.unescape`](#_unescapestring)
 * [`_.uniqueId`](#_uniqueidprefix)
-
-<!-- /div -->
-
-
-<!-- div -->
-
-## `Properties`
-* [`_.VERSION`](#_version)
-* [`_.templateSettings`](#_templatesettings)
-* [`_.templateSettings.escape`](#_templatesettingsescape)
-* [`_.templateSettings.evaluate`](#_templatesettingsevaluate)
-* [`_.templateSettings.interpolate`](#_templatesettingsinterpolate)
-* [`_.templateSettings.variable`](#_templatesettingsvariable)
 
 <!-- /div -->
 
@@ -3159,4 +3159,4 @@ _.uniqueId();
 <!-- /div -->
 
 
-  [1]: #Chaining "Jump back to the TOC."
+  [1]: #Arrays "Jump back to the TOC."
